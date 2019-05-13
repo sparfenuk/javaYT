@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.control.Button?>
+
+<GridPane  fx:id="grid" prefHeight="510.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLMainController">
+
+    <Button fx:id="openYTAnalitics" text="Перейти в YouTube Analytics" GridPane.valignment="CENTER"/>
+    <Button fx:id="openSettings" text="Перейти в Настройки" GridPane.columnIndex="1"/>
+
+    <columnConstraints>
+        <ColumnConstraints percentWidth="50"/>
+        <ColumnConstraints percentWidth="50"/>
+    </columnConstraints>
+</GridPane>
