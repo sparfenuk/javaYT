@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane fx:id="grid" maxHeight="600.0" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLMainController">
+    <columnConstraints>
+        <ColumnConstraints />
+        <ColumnConstraints />
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
+    </rowConstraints>
+
+    <JFXButton fx:id="globalInfBtn" maxHeight="Infinity" maxWidth="Infinity" minHeight="50.0" minWidth="100.0" onAction="#globalInfBtnClick" prefHeight="300.0" prefWidth="200.0" ripplerFill="BLACK" text="Отобразить глобальную информацию о канале" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" />
+    <JFXButton fx:id="compareChnlsBtn" maxHeight="Infinity" maxWidth="Infinity" minHeight="50.0" minWidth="100.0" onAction="#compareChnlsBtnClick" prefHeight="300.0" prefWidth="200.0" text="Сравнить глобальную информацию о каналах" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" />
+    <JFXButton fx:id="sortChnlsBtn" maxHeight="Infinity" maxWidth="Infinity" minHeight="50.0" minWidth="100.0" onAction="#sortChnlsBtnClick" prefHeight="300.0" prefWidth="200.0" text="Сортировать каналы по их данным" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" />
+    <JFXButton fx:id="mediaResonanceBtn" maxHeight="Infinity" maxWidth="Infinity" minHeight="50.0" minWidth="100.0" onAction="#mediaResonanceBtnClick" prefHeight="300.0" prefWidth="200.0" text="Медиа резонанс" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1" />
+    <JFXButton fx:id="compareMediaResonanceBtn" maxHeight="Infinity" maxWidth="Infinity" minHeight="50.0" minWidth="100.0" onAction="#compareMediaResonanceBtnClick" prefHeight="300.0" prefWidth="200.0" text="Сравнить Медиа резонанс" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <JFXButton fx:id="sortMediaResonanceBtn" maxHeight="Infinity" maxWidth="Infinity" minHeight="50.0" minWidth="100.0" onAction="#sortMediaResonanceBtnClick" prefHeight="300.0" prefWidth="200.0" text="Сортировать по Медиа резонансу" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+</GridPane>
