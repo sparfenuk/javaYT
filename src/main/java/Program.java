@@ -3,6 +3,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import models.channel.statistics.Statistics;
 import models.video.Item;
 import models.video.Response;
@@ -15,13 +16,15 @@ public class Program extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLYTAnalitics.fxml"));
-        stage.setMinHeight(150.0);
-        stage.setMinWidth(300.0);
+        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+//        stage.setMinHeight(150.0);
+//        stage.setMinWidth(300.0);
 
-        Scene scene = new Scene(root, 750, 600);
+        Scene scene = new Scene(root);
 
         stage.setTitle("Youtube Analytics");
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
