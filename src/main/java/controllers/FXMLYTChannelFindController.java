@@ -3,6 +3,7 @@ package controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import models.search.Item;
 
 
 public class FXMLYTChannelFindController{
@@ -119,14 +121,14 @@ public class FXMLYTChannelFindController{
 
     @FXML
     void findBtnClick(ActionEvent event) {
-//        try {
-//            List<Item> channels = Requests.search(nickNameField.getText(), "channel", 5);
-//
-//            for(Item i:channels)
-//                channelList.getItems().add(new Cell(i.getResult().getThumbnails().getDefault().getUrl(),i.getResult().getTitle()));
-//
-//        }
-//        catch (Exception e){}
+        try {
+            List<Item> channels = utils.Requests.search(nickNameField.getText(), "channel", 5);
+
+            for(Item i:channels)
+                channelList.getItems().add(new Cell(i.getResult().getThumbnails().getDefault().getUrl(),i.getResult().getTitle()));
+
+        }
+        catch (Exception e){}
     }
 
     @FXML

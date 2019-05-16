@@ -4,6 +4,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import utils.Requests;
+import utils.Settings;
+
+import java.io.File;
 
 
 public class Program extends Application {
@@ -24,6 +28,11 @@ public class Program extends Application {
     }
 
     public static void main(String[] args) throws Exception {
+
+        //<init>
+        File cacheFolder = new File(Settings.CachePath);
+        cacheFolder.mkdirs();
+        //</init>
         System.out.println(Requests.search("PewDiePie","channel",1).get(0).getResult().getChannelTitle());
         Application.launch();
     }
