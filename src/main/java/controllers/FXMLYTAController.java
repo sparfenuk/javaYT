@@ -72,27 +72,14 @@ public class FXMLYTAController {
     @FXML
     void initialize() {
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
-            double width = grid.getWidth()/3;
-            double height = grid.getHeight()/2;
+            double width = grid.getWidth()/3.2;
+            double height = grid.getHeight()/2.2;
             int fontSize = (int)((width + height)/18);
 
             for (int i = 0 ; i < grid.getChildren().size() ; i++){
                 ((JFXButton)grid.getChildren().get(i)).setPrefSize(width,height);
                 grid.getChildren().get(i).setStyle("-fx-font: " + fontSize +" arial;");
             }
-
-//            globalInfBtn.setPrefSize(width,height);
-//            globalInfBtn.setStyle("-fx-font: " + fontSize +" arial;");
-//            compareChnlsBtn.setPrefSize(width,height);
-//            compareChnlsBtn.setStyle("-fx-font: " + fontSize +" arial;");
-//            sortChnlsBtn.setPrefSize(width,height);
-//            sortChnlsBtn.setStyle("-fx-font: " + fontSize +" arial;");
-//            mediaResonanceBtn.setPrefSize(width,height);
-//            mediaResonanceBtn.setStyle("-fx-font: " + fontSize +" arial;");
-//            compareMediaResonanceBtn.setPrefSize(width,height);
-//            compareMediaResonanceBtn.setStyle("-fx-font: " + fontSize +" arial;");
-//            sortMediaResonanceBtn.setPrefSize(width,height);
-//            sortMediaResonanceBtn.setStyle("-fx-font: " + fontSize +" arial;");
         };
 
         grid.widthProperty().addListener(stageSizeListener);

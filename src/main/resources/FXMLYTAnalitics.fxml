@@ -5,18 +5,22 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
+<?import javafx.geometry.Insets?>
 <GridPane fx:id="grid" maxHeight="600.0" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLYTAController">
     <columnConstraints>
-        <ColumnConstraints />
-        <ColumnConstraints />
-        <ColumnConstraints />
+        <ColumnConstraints percentWidth="33.3" fillWidth="false"/>
+        <ColumnConstraints percentWidth="33.3" fillWidth="false"/>
+        <ColumnConstraints percentWidth="33.3" fillWidth="false"/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints />
-        <RowConstraints />
+        <RowConstraints percentHeight="50" fillHeight="false"/>
+        <RowConstraints percentHeight="50" fillHeight="false"/>
     </rowConstraints>
+    <GridPane.margin>
+        <Insets left="20.0" top="20.0" right="20.0" bottom="20.0"/>
+    </GridPane.margin>
 
-    <JFXButton fx:id="globalInfBtn" maxHeight="Infinity" maxWidth="Infinity" minHeight="50.0" minWidth="100.0" onAction="#globalInfBtnClick" prefHeight="300.0" prefWidth="200.0" ripplerFill="BLACK" text="Отобразить глобальную информацию о канале" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" />
+    <JFXButton fx:id="globalInfBtn"  maxHeight="Infinity" maxWidth="Infinity" minHeight="50.0" minWidth="100.0" onAction="#globalInfBtnClick" prefHeight="300.0" prefWidth="200.0" ripplerFill="BLACK" text="Отобразить глобальную информацию о канале" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" />
     <JFXButton fx:id="compareChnlsBtn" maxHeight="Infinity" maxWidth="Infinity" minHeight="50.0" minWidth="100.0" onAction="#compareChnlsBtnClick" prefHeight="300.0" prefWidth="200.0" text="Сравнить глобальную информацию о каналах" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" />
     <JFXButton fx:id="sortChnlsBtn" maxHeight="Infinity" maxWidth="Infinity" minHeight="50.0" minWidth="100.0" onAction="#sortChnlsBtnClick" prefHeight="300.0" prefWidth="200.0" text="Сортировать каналы по их данным" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" />
     <JFXButton fx:id="mediaResonanceBtn" maxHeight="Infinity" maxWidth="Infinity" minHeight="50.0" minWidth="100.0" onAction="#mediaResonanceBtnClick" prefHeight="300.0" prefWidth="200.0" text="Медиа резонанс" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1" />
