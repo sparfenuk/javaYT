@@ -1,10 +1,10 @@
+
 package models.channel;
 
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import models.shared.PageInfo;
-
-import java.util.List;
 
 public class Response {
 
@@ -19,7 +19,7 @@ public class Response {
     private PageInfo pageInfo;
     @SerializedName("items")
     @Expose
-    private List<Item> items = null;
+    private List<Channel> items = null;
 
     public String getKind() {
         return kind;
@@ -33,7 +33,7 @@ public class Response {
         return pageInfo;
     }
 
-    public List<Item> getItems() {
+    public List<Channel> getItems() {
         return items;
     }
 

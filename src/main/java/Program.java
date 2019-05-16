@@ -4,13 +4,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import models.channel.Channel;
-import models.channel.statistics.Statistics;
-import models.video.Item;
-import models.video.Response;
-import models.video.Video;
-
-import java.util.List;
 
 
 public class Program extends Application {
@@ -31,35 +24,7 @@ public class Program extends Application {
     }
 
     public static void main(String[] args) throws Exception {
-
-//        List<Item> videos = Requests.searchVideos("Mister max",5);
-//        Video video = videos.get(1).getVideo();
-//        //channel name
-//        System.out.println(Requests.findChannel(video.getChannelId()).getTitle());
-//        //sub count
-//        System.out.println(Requests.findChannelStatistics(video.getChannelId()).getSubscriberCount());
-//        //video name
-//        System.out.println(video.getTitle());
-
-        List<Item> videos = Requests.searchVideos("Mister max",5);
-        Video video = videos.get(1).getVideo();
-        String videoOwner = Requests.getChannel(video.getChannelId()).getTitle();
-        Channel channel = Requests.searchChannels("PewDiePie",5).get(0).getSnippet();
-
-        //video owner name
-        System.out.println(videoOwner);
-        //Found channel name by name
-        System.out.println(channel.getTitle());
-        //sub count
-        System.out.println(Requests.getChannelStatistics(video.getChannelId()).getSubscriberCount());
-        //video name
-        System.out.println(video.getTitle());
-
-//
-//        Statistics s = Requests.findChannelStatistics("UC-lHJZR3Gqxm24_Vd_AJ5Yw");
-//        System.out.println(s.getSubscriberCount());
-//        System.out.println(s.getVideoCount());
-//        System.out.println(s.getViewCount());
+        System.out.println(Requests.search("PewDiePie","channel",1).get(0).getResult().getChannelTitle());
         Application.launch();
     }
 }

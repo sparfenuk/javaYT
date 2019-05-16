@@ -1,5 +1,5 @@
 
-package models.video;
+package models.search;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

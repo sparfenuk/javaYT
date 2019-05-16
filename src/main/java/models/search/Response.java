@@ -1,5 +1,5 @@
 
-package models.video;
+package models.search;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

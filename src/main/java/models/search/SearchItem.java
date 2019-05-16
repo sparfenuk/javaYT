@@ -1,11 +1,11 @@
 
-package models.video;
+package models.search;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import models.shared.Thumbnails;
 
-public class Video {
+public class SearchItem {
 
     @SerializedName("publishedAt")
     @Expose

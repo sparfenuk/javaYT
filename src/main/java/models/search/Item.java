@@ -1,5 +1,5 @@
 
-package models.channel.statistics;
+package models.search;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -14,10 +14,10 @@ public class Item {
     private String etag;
     @SerializedName("id")
     @Expose
-    private String id;
-    @SerializedName("statistics")
+    private Id id;
+    @SerializedName("snippet")
     @Expose
-    private Statistics statistics;
+    private SearchItem snippet;
 
     public String getKind() {
         return kind;
@@ -27,12 +27,12 @@ public class Item {
         return etag;
     }
 
-    public String getId() {
+    public Id getId() {
         return id;
     }
 
-    public Statistics getStatistics() {
-        return statistics;
+    public SearchItem getResult() {
+        return snippet;
     }
 
 }

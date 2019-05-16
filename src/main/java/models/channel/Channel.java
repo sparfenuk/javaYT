@@ -3,61 +3,50 @@ package models.channel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import models.shared.Localized;
-import models.shared.Thumbnails;
 
 public class Channel {
 
-    @SerializedName("title")
+    @SerializedName("kind")
     @Expose
-    private String title;
-    @SerializedName("description")
+    private String kind;
+    @SerializedName("etag")
     @Expose
-    private String description;
-    @SerializedName("customUrl")
+    private String etag;
+    @SerializedName("id")
     @Expose
-    private String customUrl;
-    @SerializedName("publishedAt")
+    private String id;
+    @SerializedName("snippet")
     @Expose
-    private String publishedAt;
-    @SerializedName("thumbnails")
+    private Info snippet;
+    @SerializedName("contentDetails")
     @Expose
-    private Thumbnails thumbnails;
-    @SerializedName("localized")
+    private ContentDetails contentDetails;
+    @SerializedName("statistics")
     @Expose
-    private Localized localized;
-    @SerializedName("country")
-    @Expose
-    private String country;
+    private Statistics statistics;
 
-    public String getTitle() {
-        return title;
+    public String getKind() {
+        return kind;
     }
 
-
-    public String getDescription() {
-        return description;
+    public String getEtag() {
+        return etag;
     }
 
-    public String getCustomUrl() {
-        return customUrl;
+    public String getId() {
+        return id;
     }
 
-    public String getPublishedAt() {
-        return publishedAt;
+    public Info getInfo() {
+        return snippet;
     }
 
-    public Thumbnails getThumbnails() {
-        return thumbnails;
+    public ContentDetails getContentDetails() {
+        return contentDetails;
     }
 
-    public Localized getLocalized() {
-        return localized;
+    public Statistics getStatistics() {
+        return statistics;
     }
-
-    public String getCountry() {
-        return country;
-    }
-
 
 }
