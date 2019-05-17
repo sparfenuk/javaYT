@@ -17,10 +17,16 @@ public class Requests {
 
     public static Channel getChannel(String channelid) throws Exception {
         String json = "";
-        File cacheFile = new File(Settings.CachePath + Objects.hash(channelid) + ".json");
-        if (!cacheFile.createNewFile())
+        File cacheFile = new File(Settings.CACHEPATH + Objects.hash(channelid) + ".json");
+        if (!cacheFile.createNewFile()) {
+
+            if (cacheFile.lastModified() + Settings.CACHELIFETIME * 1000 < System.currentTimeMillis()) {
+                cacheFile.delete();
+                return getChannel(channelid);
+            }
             json = readFile(cacheFile.getPath(), java.nio.charset.StandardCharsets.UTF_8);
-        else {
+
+        } else {
             String url = "https://www.googleapis.com/youtube/v3/channels";
             HttpResponse<String> response = Unirest.get(url)
                     .queryString("key", Settings.API_DATA_KEY)
@@ -37,9 +43,15 @@ public class Requests {
     //channel,playlist,video
     public static List<models.search.Item> search(String query, String type, int maxresults) throws Exception {
         String json = "";
-        File cacheFile = new File(Settings.CachePath + Objects.hash(query, type, maxresults) + ".json");
-        if (!cacheFile.createNewFile())
+        File cacheFile = new File(Settings.CACHEPATH + Objects.hash(query, type, maxresults) + ".json");
+        if (!cacheFile.createNewFile()) {
+            System.out.println(cacheFile.lastModified());
+            if (cacheFile.lastModified() + Settings.CACHELIFETIME * 1000 < System.currentTimeMillis()) {
+                cacheFile.delete();
+                return search(query, type, maxresults);
+            }
             json = readFile(cacheFile.getPath(), java.nio.charset.StandardCharsets.UTF_8);
+        }
         else {
             String url = "https://www.googleapis.com/youtube/v3/search";
             HttpResponse<String> response = Unirest.get(url)
@@ -54,7 +66,6 @@ public class Requests {
         }
         return new Gson().fromJson(json, models.search.Response.class).getItems();
     }
-
     private static String readFile(String path, Charset encoding)
             throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
