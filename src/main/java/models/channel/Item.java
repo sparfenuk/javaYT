@@ -3,7 +3,7 @@ package models.channel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Channel {
+public class Item {
 
     @SerializedName("kind")
     @Expose
@@ -14,12 +14,6 @@ public class Channel {
     @SerializedName("id")
     @Expose
     private String id;
-    @SerializedName("snippet")
-    @Expose
-    private Info snippet;
-    @SerializedName("contentDetails")
-    @Expose
-    private ContentDetails contentDetails;
     @SerializedName("statistics")
     @Expose
     private Statistics statistics;
@@ -28,20 +22,24 @@ public class Channel {
         return kind;
     }
 
+    public void setKind(String kind) {
+        this.kind = kind;
+    }
+
     public String getEtag() {
         return etag;
+    }
+
+    public void setEtag(String etag) {
+        this.etag = etag;
     }
 
     public String getId() {
         return id;
     }
 
-    public Info getInfo() {
-        return snippet;
-    }
-
-    public ContentDetails getContentDetails() {
-        return contentDetails;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Statistics getStatistics() {
@@ -51,4 +49,5 @@ public class Channel {
     public void setStatistics(Statistics statistics) {
         this.statistics = statistics;
     }
+
 }

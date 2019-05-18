@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import models.channel.Channel;
+import models.channel.Statistics;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,7 +37,9 @@ public class Requests {
             json = response.getBody();
             Files.write(cacheFile.toPath(), json.getBytes());
         }
-        return new Gson().fromJson(json, models.channel.Response.class).getItems().get(0);
+        Channel c = new Gson().fromJson(json, models.channel.Response.class).getItems().get(0);
+        c.setStatistics(getStatistics(channelid));
+        return c;
     }
 
     //types
@@ -64,8 +67,35 @@ public class Requests {
             json = response.getBody();
             Files.write(cacheFile.toPath(), json.getBytes());
         }
+
         return new Gson().fromJson(json, models.search.Response.class).getItems();
     }
+
+    public static models.channel.Statistics getStatistics(String channelid) throws Exception {
+        String json = "";
+        File cacheFile = new File(Settings.CACHEPATH + Objects.hash(channelid,"stats") + ".json");
+        if (!cacheFile.createNewFile()) {
+
+            if (cacheFile.lastModified() + Settings.CACHELIFETIME * 1000 < System.currentTimeMillis()) {
+                cacheFile.delete();
+                return getStatistics(channelid);
+            }
+            json = readFile(cacheFile.getPath(), java.nio.charset.StandardCharsets.UTF_8);
+
+        } else {
+            String url = "https://www.googleapis.com/youtube/v3/channels";
+            HttpResponse<String> response = Unirest.get(url)
+                    .queryString("key", Settings.API_DATA_KEY)
+                    .queryString("part", "statistics")
+                    .queryString("id", channelid)
+                    .asString();
+            json = response.getBody();
+            Files.write(cacheFile.toPath(), json.getBytes());
+        }
+
+        return new Gson().fromJson(json, models.channel.Statistic.class).getItems().get(0).getStatistics();
+    }
+
     private static String readFile(String path, Charset encoding)
             throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));

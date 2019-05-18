@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <?import javafx.geometry.Insets?>
-<GridPane fx:id="grid" maxHeight="600.0" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLYTAController">
+<GridPane fx:id="grid" maxHeight="600.0" stylesheets="jfoenixCSS.css" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLYTAController">
     <columnConstraints>
         <ColumnConstraints percentWidth="33.3" fillWidth="false"/>
         <ColumnConstraints percentWidth="33.3" fillWidth="false"/>
