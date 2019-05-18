@@ -25,6 +25,8 @@ import java.util.ResourceBundle;
 
 public class FXMLSettingsController {
 
+    private double x, y;
+
     @FXML
     private Label LabelSettings;
 
@@ -85,7 +87,7 @@ public class FXMLSettingsController {
     @FXML
     private JFXButton BtnLoadTimeCancel;
 
-    public void MainMenu(MouseEvent mouseEvent) {
+    public void mainMenu(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
@@ -100,7 +102,7 @@ public class FXMLSettingsController {
         }
     }
 
-    public void OpenPathToFile(MouseEvent mouseEvent) {
+    public void openPathToFile(MouseEvent mouseEvent) {
         JFileChooser fileopen = new JFileChooser();
         int ret = fileopen.showDialog(null, "Открыть файл");
         if (ret == JFileChooser.APPROVE_OPTION) {
@@ -109,7 +111,64 @@ public class FXMLSettingsController {
         }
     }
 
-    public void BtnCacheSave(MouseEvent mouseEvent) {
+
+
+
+    public void checkTrueCache(ActionEvent actionEvent) { CacheFalse.setDisable(true);
+    }
+
+    public void checkFalseCache(ActionEvent actionEvent) { CacheTrue.setDisable(true);
+    }
+
+
+    public void btnLoadTimeCancel(MouseEvent mouseEvent) {
+        LoadTImeTrue.setSelected(false);
+        LoadTImeFalse.setSelected(false);
+        LoadTImeTrue.setDisable(false);
+        LoadTImeFalse.setDisable(false);
+    }
+
+    public void checkFalseLoadTime(ActionEvent actionEvent) {
+        LoadTImeTrue.setDisable(true);}
+
+    public void checkTrueLoadTime(ActionEvent actionEvent) {
+        LoadTImeFalse.setDisable(true);}
+
+    @FXML
+    public void close(MouseEvent event)
+    {
+        Stage stage = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    public void minimize(MouseEvent event) {
+        Stage stage = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+
+    @FXML
+    public void pressed(MouseEvent event) {
+        x = event.getSceneX();
+        y = event.getSceneY();
+    }
+
+    @FXML
+    public void dragged(MouseEvent event) {
+        Stage stage = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+        stage.setX(event.getScreenX()-x);
+        stage.setY(event.getScreenY()-y);
+    }
+
+    public void cancelSettingsBtn(MouseEvent event) {
+        CacheFalse.setSelected(false);
+        CacheTrue.setSelected(false);
+        CacheFalse.setDisable(false);
+        CacheTrue.setDisable(false);
+    }
+
+    public void saveSettingsBtn(MouseEvent event) {
         if (CacheTrue.isSelected() == true)
         {
             System.out.print("hello");
@@ -118,21 +177,6 @@ public class FXMLSettingsController {
         {
 
         }
-    }
-
-    public void BtnCacheCancel(MouseEvent mouseEvent) {
-        CacheFalse.setSelected(false);
-        CacheTrue.setSelected(false);
-        CacheFalse.setDisable(false);
-        CacheTrue.setDisable(false);
-    }
-    public void CheckTrueCache(ActionEvent actionEvent) { CacheFalse.setDisable(true);
-    }
-
-    public void CheckFalseCache(ActionEvent actionEvent) { CacheTrue.setDisable(true);
-    }
-
-    public void BtnLoadTimeSave(MouseEvent mouseEvent) {
         if (LoadTImeTrue.isSelected() == true)
         {
 
@@ -142,16 +186,6 @@ public class FXMLSettingsController {
 
         }
     }
-    public void BtnLoadTimeCancel(MouseEvent mouseEvent) {
-        LoadTImeTrue.setSelected(false);
-        LoadTImeFalse.setSelected(false);
-        LoadTImeTrue.setDisable(false);
-        LoadTImeFalse.setDisable(false);
-    }
 
-    public void CheckFalseLoadTime(ActionEvent actionEvent) {
-        LoadTImeTrue.setDisable(true);}
 
-    public void CheckTrueLoadTime(ActionEvent actionEvent) {
-        LoadTImeFalse.setDisable(true);}
 }

@@ -7,10 +7,14 @@ import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 public class FXMLYTAController {
+
+    private double x, y;
 
     @FXML
     private ResourceBundle resources;
@@ -84,5 +88,41 @@ public class FXMLYTAController {
 
         grid.widthProperty().addListener(stageSizeListener);
         grid.heightProperty().addListener(stageSizeListener);
+    }
+
+
+    @FXML
+    public void close(MouseEvent event)
+    {
+        Stage stage = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
+    public void minimize(MouseEvent event) {
+        Stage stage = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+
+
+    public void pressed(MouseEvent event) {
+        x = event.getSceneX();
+        y = event.getSceneY();
+    }
+
+    public void dragged(MouseEvent event) {
+        Stage stage = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+        stage.setX(event.getScreenX()-x);
+        stage.setY(event.getScreenY()-y);
+    }
+
+    public void maximize(MouseEvent event)
+    {
+        Stage stage = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+        if (!stage.isFullScreen())
+            stage.setFullScreen(true);
+        else
+            stage.setFullScreen(false);
+
     }
 }

@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="400.0" prefWidth="600.0" stylesheets="@jfoenixCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLMainController">
+<BorderPane fx:id="borderPane" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles/jfoenixCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLMainController">
    <center>
-      <AnchorPane prefHeight="320.0" prefWidth="472.0" stylesheets="@jfoenixCSS.css" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="320.0" prefWidth="472.0" BorderPane.alignment="CENTER">
          <children>
-            <JFXButton layoutX="165.0" layoutY="136.0" prefHeight="53.0" prefWidth="271.0" text="YouTube Analytics" textAlignment="CENTER">
+            <JFXButton layoutX="165.0" layoutY="136.0" onMouseClicked="#goToYTAnalitics" prefHeight="53.0" prefWidth="271.0" text="YouTube Analytics" textAlignment="CENTER">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -25,7 +25,7 @@
                <graphic>
                   <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@settings.png" />
+                        <Image url="@icons/settings.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -35,19 +35,19 @@
       </AnchorPane>
    </center>
    <top>
-      <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="570.0" style="-fx-padding: 2;" stylesheets="@jfoenixCSS.css" BorderPane.alignment="CENTER">
+      <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="570.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="close" fitHeight="29.0" fitWidth="32.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="close" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true" styleClass="iconBTN">
                <image>
-                  <Image url="@close.png" />
+                  <Image url="@icons/close.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fitHeight="31.0" fitWidth="44.0" onMouseClicked="#minimize" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#minimize" pickOnBounds="true" preserveRatio="true" styleClass="iconBTN">
                <image>
-                  <Image url="@minus.png" />
+                  <Image url="@icons/minus.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />

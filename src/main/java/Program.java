@@ -20,6 +20,7 @@ public class Program extends Application {
 
         Scene scene = new Scene(root);
 
+        stage.setOpacity(0);
         stage.setTitle("Youtube Analytics");
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setResizable(false);

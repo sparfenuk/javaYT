@@ -3,54 +3,100 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="SettingsId" fx:id="Settings" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #FFF0F5;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLSettingsController">
-   <children>
-      <Pane id="PaneId" fx:id="Pane" layoutX="-1.0" prefHeight="183.0" prefWidth="700.0">
+<BorderPane prefHeight="400.0" prefWidth="700.0" stylesheets="@styles/jfoenixCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLSettingsController">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="LabelSettings" layoutX="278.0" layoutY="12.0" text="Настройки">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <JFXButton id="MainMenuId" fx:id="MainMenu" layoutX="14.0" layoutY="14.0" onMouseClicked="#MainMenu" style="-fx-background-color: #FFE4E1;" text="Главное меню" />
+            <Pane id="PaneId" fx:id="Pane" prefHeight="183.0" prefWidth="700.0">
+               <children>
+                  <Label fx:id="LabelSettings" layoutX="282.0" layoutY="11.0" text="Настройки">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="38.0" fitWidth="50.0" layoutX="14.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" styleClass="iconBTN">
+                     <image>
+                        <Image url="@icons/arrow_back.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <HBox id="HBoxId" fx:id="HBox" prefHeight="380.0" prefWidth="774.0">
+               <children>
+                  <Pane id="HBoxPaneFirstId" fx:id="HBoxPaneFirst" prefHeight="248.0" prefWidth="207.0" styleClass="pane">
+                     <children>
+                        <Label alignment="CENTER" layoutX="25.0" layoutY="4.0" prefHeight="21.0" prefWidth="132.0" text="Использовать кэш" />
+                        <Label id="LabelSaveCacheId" fx:id="LabelSaveCache" layoutX="49.0" layoutY="93.0" text="Сохранить кэш ?" />
+                        <JFXCheckBox id="CacheTrueId" fx:id="CacheTrue" layoutX="46.0" layoutY="173.0" onAction="#checkTrueCache" styleClass="label" text="ТАК" />
+                        <JFXCheckBox id="CacheTrueId" fx:id="CacheFalse" layoutX="105.0" layoutY="173.0" onAction="#checkFalseCache" styleClass="label" text="НІ" />
+                     </children>
+                  </Pane>
+                  <Pane id="HBoxPaneSecondId" fx:id="HBoxPaneSecond" prefHeight="248.0" prefWidth="292.0" styleClass="pane">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="14.0" prefHeight="21.0" prefWidth="103.0" text="Путь к кэшу" />
+                        <JFXTextField id="PathTextFieldId" fx:id="PathTextField" layoutX="38.0" layoutY="83.0" prefHeight="31.0" prefWidth="202.0" />
+                        <JFXButton id="settingsBTN" fx:id="BtnPath" layoutX="98.0" layoutY="173.0" onMouseClicked="#openPathToFile" prefHeight="31.0" prefWidth="84.0" text="Open" />
+                     </children>
+                  </Pane>
+                  <Pane id="HBoxPaneThirdId" fx:id="HBoxPaneThird" prefHeight="248.0" prefWidth="227.0" styleClass="pane">
+                     <children>
+                        <Label alignment="CENTER" layoutX="22.0" layoutY="4.0" prefHeight="21.0" prefWidth="168.0" text="Затраченое время " />
+                        <JFXCheckBox id="LoadTImeFalseId" fx:id="LoadTImeFalse" layoutX="121.0" layoutY="169.0" onAction="#checkFalseLoadTime" styleClass="label" text="False" />
+                        <JFXCheckBox id="LoadTImeTrueId" fx:id="LoadTImeTrue" layoutX="58.0" layoutY="169.0" onAction="#checkTrueLoadTime" styleClass="label" text="True" />
+                        <Label id="LabelLoadTimeId" fx:id="LabelLoadTime" alignment="CENTER" layoutX="21.0" layoutY="56.0" prefHeight="44.0" prefWidth="170.0" text="Отображать затраченое время" />
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
          </children>
-      </Pane>
-      <HBox id="HBoxId" fx:id="HBox" layoutX="3.0" layoutY="184.0" prefHeight="213.0" prefWidth="693.0" style="-fx-background-color: #DCDCDC;">
+      </VBox>
+   </center>
+   <top>
+      <HBox alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="19.0" prefWidth="700.0" styleClass="hatbox" BorderPane.alignment="CENTER">
          <children>
-            <Pane id="HBoxPaneFirstId" fx:id="HBoxPaneFirst" prefHeight="213.0" prefWidth="209.0" style="-fx-border-color: #000000;">
-               <children>
-                  <Label layoutX="25.0" layoutY="4.0" prefHeight="21.0" prefWidth="132.0" text="Использовать кэш" />
-                  <Label id="LabelSaveCacheId" fx:id="LabelSaveCache" layoutX="43.0" layoutY="70.0" text="Сохранить кэш ?" />
-                  <JFXCheckBox id="CacheTrueId" fx:id="CacheTrue" layoutX="23.0" layoutY="99.0" onAction="#CheckTrueCache" text="True" />
-                  <JFXCheckBox id="CacheTrueId" fx:id="CacheFalse" layoutX="100.0" layoutY="99.0" onAction="#CheckFalseCache" text="False" />
-                  <JFXButton id="BtnCacheSaveId" fx:id="BtnCacheSave" layoutX="14.0" layoutY="148.0" onMouseClicked="#BtnCacheSave" style="-fx-background-color: BEBEBE;" text="Сохранить" />
-                  <JFXButton id="BtnCacheCancelId" fx:id="BtnCacheCancel" layoutX="109.0" layoutY="148.0" onMouseClicked="#BtnCacheCancel" style="-fx-background-color: BEBEBE;" text="Отмена" />
-               </children>
-            </Pane>
-            <Pane id="HBoxPaneSecondId" fx:id="HBoxPaneSecond" prefHeight="213.0" prefWidth="238.0" style="-fx-border-color: #000000;">
-               <children>
-                  <Label layoutX="64.0" layoutY="4.0" prefHeight="21.0" prefWidth="103.0" text="Путь к кэшу" />
-                  <JFXTextField id="PathTextFieldId" fx:id="PathTextField" layoutX="14.0" layoutY="76.0" prefHeight="31.0" prefWidth="202.0" />
-                  <JFXButton id="BtnPathId" fx:id="BtnPath" layoutX="73.0" layoutY="144.0" onMouseClicked="#OpenPathToFile" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #BEBEBE;" text="Open" />
-               </children>
-            </Pane>
-            <Pane id="HBoxPaneThirdId" fx:id="HBoxPaneThird" prefHeight="213.0" prefWidth="266.0" style="-fx-border-color: #000000;">
-               <children>
-                  <Label layoutX="54.0" layoutY="4.0" prefHeight="21.0" prefWidth="168.0" text="Затраченое время " />
-                  <JFXCheckBox id="LoadTImeFalseId" fx:id="LoadTImeFalse" layoutX="148.0" layoutY="105.0" onAction="#CheckFalseLoadTime" text="False" />
-                  <JFXCheckBox id="LoadTImeTrueId" fx:id="LoadTImeTrue" layoutX="54.0" layoutY="105.0" onAction="#CheckTrueLoadTime" text="True" />
-                  <Label id="LabelLoadTimeId" fx:id="LabelLoadTime" layoutX="27.0" layoutY="45.0" prefHeight="62.0" prefWidth="222.0" text="Отображать затраченое время" />
-                  <JFXButton id="BtnLoadTimeCancelId" fx:id="BtnLoadTimeCancel" layoutX="142.0" layoutY="140.0" onMouseClicked="#BtnLoadTimeCancel" style="-fx-background-color: BEBEBE;" text="Отмена" />
-                  <JFXButton id="BtnLoadTimeSaveId" fx:id="BtnLoadTimeSave" layoutX="45.0" layoutY="140.0" onMouseClicked="#BtnLoadTimeSave" style="-fx-background-color: BEBEBE;" text="Сохранить" />
-               </children>
-            </Pane>
+            <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#minimize" pickOnBounds="true" preserveRatio="true" styleClass="iconBTN">
+               <image>
+                  <Image url="@icons/minus.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true" styleClass="iconBTN">
+               <image>
+                  <Image url="@icons/close.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
          </children>
       </HBox>
-   </children>
-</AnchorPane>
+   </top>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="52.0" prefWidth="680.0" styleClass="hatbox" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton id="settingsBTN" fx:id="BtnCacheSave" onMouseClicked="#saveSettingsBtn" prefHeight="32.0" prefWidth="72.0" text="Сохранить" textAlignment="CENTER">
+               <font>
+                  <Font size="3.0" />
+               </font>
+            </JFXButton>
+            <JFXButton id="settingsBTN" fx:id="BtnCacheCancel" onMouseClicked="#cancelSettingsBtn" prefHeight="32.0" prefWidth="72.0" text="Отмена" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+   </bottom>
+</BorderPane>

@@ -1,0 +1,59 @@
+.root
+{
+	-fx-background-color:  #202020;
+	-fx-padding: 10;
+    -fx-alignment: CENTER;
+	-fx-background-radius: 10;
+	-fx-width: 620;
+	-fx-heigh: 420;
+}
+
+
+
+.jfx-button {
+	 -fx-alignment: CENTER;
+     -jfx-button-type: RAISED;
+     -fx-background-color: #C0C0C0;
+     -fx-text-fill: #202020;
+	 -fx-font-size: 22;
+	 -fx-padding: 10;
+	 -fx-cursor: hand;
+}
+.label
+{
+	-fx-text-fill: #A8A8A8;
+}
+
+#settingsBTN
+{
+
+    -fx-alignment: CENTER;
+    -jfx-button-type: RAISED;
+    -fx-background-color: #A0A0A0;
+    -fx-text-fill: #202020;
+   	-fx-font-size: 10;
+   	-fx-padding: 10;
+   	-fx-cursor: hand;
+
+}
+
+.pane
+{
+   -fx-background-color: #282828;
+   -fx-border-color: #202020;
+   -fx-border-width: 3;
+}
+
+.iconBTN
+{
+    -fx-cursor: hand;
+    -fx-width: 30;
+    -fx-heigh: 30;
+}
+
+.hatbox
+{
+  -fx-background-color: #181818;
+  -fx-background-radius: 10;
+  -fx-spacing: 5;
+}
