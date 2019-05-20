@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+          prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLShowBaseInfController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="293.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="0.0" prefWidth="0.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="295.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="102.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="309.0" minHeight="10.0" prefHeight="298.0" vgrow="SOMETIMES"/>
+    </rowConstraints>
+
+    <children>
+        <JFXTextField fx:id="channelId1" onKeyTyped="#channelId1KeyInput" prefHeight="22.0" prefWidth="228.0"/>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Input Channel id or find it using our picker →">
+            <GridPane.margin>
+                <Insets bottom="30.0"/>
+            </GridPane.margin>
+        </Text>
+        <JFXButton fx:id="findBtn1" onAction="#findBtn1OnAction" text="Find id" GridPane.halignment="RIGHT">
+            <GridPane.margin>
+                <Insets bottom="30.0" right="35.0"/>
+            </GridPane.margin>
+        </JFXButton>
+
+        <Separator orientation="VERTICAL" prefHeight="298.0" prefWidth="1.0" GridPane.columnIndex="1"
+                   GridPane.rowSpan="2"/>
+
+        <JFXTextField fx:id="channelId2" onKeyTyped="#channelId2KeyInput" prefHeight="22.0" prefWidth="228.0"
+                      GridPane.columnIndex="2"/>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Input Channel id or find it using our picker →"
+              GridPane.columnIndex="2">
+            <GridPane.margin>
+                <Insets bottom="30.0"/>
+            </GridPane.margin>
+        </Text>
+        <JFXButton fx:id="findBtn2" onAction="#findBtn2OnAction" text="Find id" GridPane.columnIndex="2"
+                   GridPane.halignment="RIGHT">
+            <GridPane.margin>
+                <Insets bottom="30.0" right="30.0"/>
+            </GridPane.margin>
+        </JFXButton>
+        <ImageView fx:id="channelImageView1" GridPane.halignment="RIGHT" GridPane.rowIndex="1"
+                          GridPane.valignment="TOP">
+        <GridPane.margin>
+            <Insets right="15.0" top="15.0"/>
+        </GridPane.margin>
+    </ImageView>
+        <VBox spacing="5.0" GridPane.rowIndex="1">
+            <children>
+                <Text fx:id="chaneNameText1" strokeType="OUTSIDE" strokeWidth="0.0">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Text>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Created:">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Text>
+                <Text fx:id="createdDateText1" strokeType="OUTSIDE" strokeWidth="0.0">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Text>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Subs count:">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Text>
+                <Text fx:id="subsCountText1" strokeType="OUTSIDE" strokeWidth="0.0">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Text>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Videos count:">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Text>
+                <Text fx:id="videosCountText1" strokeType="OUTSIDE" strokeWidth="0.0">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Text>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Watches count:">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Text>
+                <Text fx:id="watchesCountText1" strokeType="OUTSIDE" strokeWidth="0.0">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Text>
+
+            </children>
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+            <GridPane.margin>
+                <Insets/>
+            </GridPane.margin>
+        </VBox>
+
+        <ImageView fx:id="channelImageView2" GridPane.halignment="RIGHT" GridPane.rowIndex="1"
+                   GridPane.valignment="TOP" GridPane.columnIndex="2">
+            <GridPane.margin>
+                <Insets right="15.0" top="15.0"/>
+            </GridPane.margin>
+        </ImageView>
+        <VBox spacing="5.0" GridPane.rowIndex="1"  GridPane.columnIndex="2">
+            <children>
+                <Text fx:id="chaneNameText2" strokeType="OUTSIDE" strokeWidth="0.0">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Text>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Created:">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Text>
+                <Text fx:id="createdDateText2" strokeType="OUTSIDE" strokeWidth="0.0">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Text>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Subs count:">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Text>
+                <Text fx:id="subsCountText2" strokeType="OUTSIDE" strokeWidth="0.0">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Text>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Videos count:">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Text>
+                <Text fx:id="videosCountText2" strokeType="OUTSIDE" strokeWidth="0.0">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Text>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Watches count:">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Text>
+                <Text fx:id="watchesCountText2" strokeType="OUTSIDE" strokeWidth="0.0">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Text>
+
+            </children>
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+            <GridPane.margin>
+                <Insets/>
+            </GridPane.margin>
+        </VBox>
+
+    </children>
+
+</GridPane>
