@@ -188,4 +188,6 @@ public class FXMLSettingsController {
     }
 
 
+    public void goBack(MouseEvent event) {
+    }
 }

@@ -13,12 +13,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -28,6 +31,9 @@ import models.search.Item;
 
 
 public class FXMLYTChannelFindController {
+
+    @FXML
+    private BorderPane borderPane;
 
     @FXML
     private ResourceBundle resources;
@@ -59,6 +65,8 @@ public class FXMLYTChannelFindController {
 
     private String chosenChanelId;
 
+
+    private double x, y;
 
     public String getChosenChanelId() {
         return chosenChanelId;
@@ -110,6 +118,8 @@ public class FXMLYTChannelFindController {
             vBox.setMargin(nickName,new Insets(10,10, 10, 0));
             vBox.setMargin(chanelId,new Insets(10,10, 10, 0));
             hBox = new HBox(imageView, vBox);
+            hBox.getStylesheets().add("/styles/cellStyle.css");
+            hBox.getStyleClass().add("hBox");
 
         }
 
@@ -170,6 +180,7 @@ public class FXMLYTChannelFindController {
 
     @FXML
     void initialize() {
+
         channelList.setCellFactory(new Callback<ListView<Cell>, ListCell<Cell>>() {
             @Override
             public ListCell<Cell> call(ListView<Cell> listView) {
@@ -177,6 +188,41 @@ public class FXMLYTChannelFindController {
             }
         });
 
+
+    }
+
+    @FXML
+    public void close(MouseEvent event)
+    {
+        Stage stage = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
+    public void minimize(MouseEvent event) {
+        Stage stage = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+
+
+    public void pressed(MouseEvent event) {
+        x = event.getSceneX();
+        y = event.getSceneY();
+    }
+
+    public void dragged(MouseEvent event) {
+        Stage stage = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+        stage.setX(event.getScreenX()-x);
+        stage.setY(event.getScreenY()-y);
+    }
+
+    public void maximize(MouseEvent event)
+    {
+        Stage stage = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+        if (!stage.isFullScreen())
+            stage.setFullScreen(true);
+        else
+            stage.setFullScreen(false);
 
     }
 }

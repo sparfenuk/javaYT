@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.image.Image?>
@@ -14,7 +13,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles/jfoenixCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLYTAController">
    <center>
-      <GridPane fx:id="grid" gridLinesVisible="true" prefHeight="600.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+      <GridPane fx:id="grid" gridLinesVisible="true" prefHeight="600.0" prefWidth="700.0" styleClass="gridPane" BorderPane.alignment="CENTER">
          <columnConstraints>
             <ColumnConstraints />
             <ColumnConstraints />
@@ -27,9 +26,6 @@
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
-         <stylesheets>
-            <URL value="@styles/jfoenixCSS.css" />
-         </stylesheets>
          <children>
             <JFXButton fx:id="globalInfBtn" maxHeight="Infinity" maxWidth="Infinity" minHeight="50.0" minWidth="100.0" onAction="#globalInfBtnClick" prefHeight="300.0" prefWidth="141.0" ripplerFill="BLACK" text="Отобразить глобальную информацию о канале" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
                <cursor>
