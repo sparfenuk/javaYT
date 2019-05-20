@@ -3,7 +3,7 @@ package controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
-import java.net.DatagramPacket;
+
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,11 +15,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -50,37 +50,37 @@ public class FXMLShowBaseInfController {
     private ImageView channelImageView1;
 
     @FXML
-    private Text chaneNameText1;
+    private Label chaneNameText1;
 
     @FXML
-    private Text createdDateText1;
+    private Label createdDateText1;
 
     @FXML
-    private Text subsCountText1;
+    private Label subsCountText1;
 
     @FXML
-    private Text videosCountText1;
+    private Label videosCountText1;
 
     @FXML
-    private Text watchesCountText1;
+    private Label watchesCountText1;
 
     @FXML
     private ImageView channelImageView2;
 
     @FXML
-    private Text chaneNameText2;
+    private Label chaneNameText2;
 
     @FXML
-    private Text createdDateText2;
+    private Label createdDateText2;
 
     @FXML
-    private Text subsCountText2;
+    private Label subsCountText2;
 
     @FXML
-    private Text videosCountText2;
+    private Label videosCountText2;
 
     @FXML
-    private Text watchesCountText2;
+    private Label watchesCountText2;
 
     @FXML
     void channelId1KeyInput(KeyEvent event) {
@@ -205,39 +205,39 @@ public class FXMLShowBaseInfController {
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 if (sdf.parse(createdDateText1.getText()).compareTo(sdf.parse(createdDateText2.getText())) < 0) {
-                    createdDateText1.setFill(Color.GREEN);
-                    createdDateText2.setFill(Color.RED);
+                    createdDateText1.setTextFill(Color.GREEN);
+                    createdDateText2.setTextFill(Color.RED);
                 } else {
-                    createdDateText1.setFill(Color.RED);
-                    createdDateText2.setFill(Color.GREEN);
+                    createdDateText1.setTextFill(Color.RED);
+                    createdDateText2.setTextFill(Color.GREEN);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
             if (Integer.parseInt(subsCountText1.getText()) > Integer.parseInt(subsCountText2.getText())) {
-                subsCountText1.setFill(Color.GREEN);
-                subsCountText2.setFill(Color.RED);
+                subsCountText1.setTextFill(Color.GREEN);
+                subsCountText2.setTextFill(Color.RED);
             } else {
-                subsCountText1.setFill(Color.RED);
-                subsCountText2.setFill(Color.GREEN);
+                subsCountText1.setTextFill(Color.RED);
+                subsCountText2.setTextFill(Color.GREEN);
             }
 
 
             if (Integer.parseInt(videosCountText1.getText()) > Integer.parseInt(videosCountText2.getText())) {
-                videosCountText1.setFill(Color.GREEN);
-                videosCountText2.setFill(Color.RED);
+                videosCountText1.setTextFill(Color.GREEN);
+                videosCountText2.setTextFill(Color.RED);
             } else {
-                videosCountText1.setFill(Color.RED);
-                videosCountText2.setFill(Color.GREEN);
+                videosCountText1.setTextFill(Color.RED);
+                videosCountText2.setTextFill(Color.GREEN);
             }
 
             if (Long.parseLong(watchesCountText1.getText()) > Long.parseLong(watchesCountText2.getText())) {
-                watchesCountText1.setFill(Color.GREEN);
-                watchesCountText2.setFill(Color.RED);
+                watchesCountText1.setTextFill(Color.GREEN);
+                watchesCountText2.setTextFill(Color.RED);
             } else {
-                watchesCountText1.setFill(Color.RED);
-                watchesCountText2.setFill(Color.GREEN);
+                watchesCountText1.setTextFill(Color.RED);
+                watchesCountText2.setTextFill(Color.GREEN);
             }
         }
 

@@ -12,6 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.Label?>
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
           prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLShowBaseInfController">
     <columnConstraints>
@@ -62,51 +63,51 @@
     </ImageView>
         <VBox spacing="5.0" GridPane.rowIndex="1">
             <children>
-                <Text fx:id="chaneNameText1" strokeType="OUTSIDE" strokeWidth="0.0">
+                <Label fx:id="chaneNameText1">
                     <font>
                         <Font size="18.0"/>
                     </font>
-                </Text>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Created:">
+                </Label>
+                <Label text="Created:">
                     <font>
                         <Font size="18.0"/>
                     </font>
-                </Text>
-                <Text fx:id="createdDateText1" strokeType="OUTSIDE" strokeWidth="0.0">
+                </Label>
+                <Label fx:id="createdDateText1">
                     <font>
                         <Font size="18.0"/>
                     </font>
-                </Text>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Subs count:">
+                </Label>
+                <Label text="Subs count:">
                     <font>
                         <Font size="18.0"/>
                     </font>
-                </Text>
-                <Text fx:id="subsCountText1" strokeType="OUTSIDE" strokeWidth="0.0">
+                </Label>
+                <Label fx:id="subsCountText1" >
                     <font>
                         <Font size="18.0"/>
                     </font>
-                </Text>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Videos count:">
+                </Label>
+                <Label  text="Videos count:">
                     <font>
                         <Font size="18.0"/>
                     </font>
-                </Text>
-                <Text fx:id="videosCountText1" strokeType="OUTSIDE" strokeWidth="0.0">
+                </Label>
+                <Label fx:id="videosCountText1">
                     <font>
                         <Font size="18.0"/>
                     </font>
-                </Text>
+                </Label>
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Watches count:">
                     <font>
                         <Font size="18.0"/>
                     </font>
                 </Text>
-                <Text fx:id="watchesCountText1" strokeType="OUTSIDE" strokeWidth="0.0">
+                <Label fx:id="watchesCountText1">
                     <font>
                         <Font size="18.0"/>
                     </font>
-                </Text>
+                </Label>
 
             </children>
             <opaqueInsets>
@@ -125,51 +126,51 @@
         </ImageView>
         <VBox spacing="5.0" GridPane.rowIndex="1"  GridPane.columnIndex="2">
             <children>
-                <Text fx:id="chaneNameText2" strokeType="OUTSIDE" strokeWidth="0.0">
+                <Label fx:id="chaneNameText2">
                     <font>
                         <Font size="18.0"/>
                     </font>
-                </Text>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Created:">
+                </Label>
+                <Label text="Created:">
                     <font>
                         <Font size="18.0"/>
                     </font>
-                </Text>
-                <Text fx:id="createdDateText2" strokeType="OUTSIDE" strokeWidth="0.0">
+                </Label>
+                <Label fx:id="createdDateText2">
                     <font>
                         <Font size="18.0"/>
                     </font>
-                </Text>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Subs count:">
+                </Label>
+                <Label text="Subs count:">
                     <font>
                         <Font size="18.0"/>
                     </font>
-                </Text>
-                <Text fx:id="subsCountText2" strokeType="OUTSIDE" strokeWidth="0.0">
+                </Label>
+                <Label fx:id="subsCountText2">
                     <font>
                         <Font size="18.0"/>
                     </font>
-                </Text>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Videos count:">
+                </Label>
+                <Label  text="Videos count:">
                     <font>
                         <Font size="18.0"/>
                     </font>
-                </Text>
-                <Text fx:id="videosCountText2" strokeType="OUTSIDE" strokeWidth="0.0">
+                </Label>
+                <Label fx:id="videosCountText2" >
                     <font>
                         <Font size="18.0"/>
                     </font>
-                </Text>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Watches count:">
+                </Label>
+                <Label text="Watches count:">
                     <font>
                         <Font size="18.0"/>
                     </font>
-                </Text>
-                <Text fx:id="watchesCountText2" strokeType="OUTSIDE" strokeWidth="0.0">
+                </Label>
+                <Label fx:id="watchesCountText2">
                     <font>
                         <Font size="18.0"/>
                     </font>
-                </Text>
+                </Label>
 
             </children>
             <opaqueInsets>
