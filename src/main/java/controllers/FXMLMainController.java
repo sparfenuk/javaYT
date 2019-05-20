@@ -1,5 +1,6 @@
 package controllers;
 
+import animation.TransitionAnimation;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -24,27 +25,26 @@ public class FXMLMainController {
 
     @FXML
     void initialize() {
-        borderPane.setOpacity(0);
-        stageFadeIn();
+       TransitionAnimation.stageFadeIn((Node)  borderPane);
     }
 
     @FXML
     public void goToYTAnalitics(MouseEvent event) throws Exception
     {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLAnalitics.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXMLYTChannelFind.fxml"));
         Parent root = (Parent) fxmlLoader.load();
 
         Scene scene = new Scene(root);
         Stage stage = new Stage();
 
-        stage.setTitle("Youtube Analytics");
-        stage.setOpacity(0.5);
+        stage.setTitle("Youtube channels");
         stage.initStyle(StageStyle.TRANSPARENT);
-        stage.setResizable(false);
         stage.setScene(scene);
-        stage.show();
-        stageFadeOut();
 
+        Stage current = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+
+        stage.show();
+        current.close();
 
     }
 
@@ -76,21 +76,8 @@ public class FXMLMainController {
         stage.setX(event.getScreenX()-x);
         stage.setY(event.getScreenY()-y);
     }
-    private void stageFadeOut()
-    {
-        FadeTransition fadeTransition = new FadeTransition(Duration.millis(5000));
-        fadeTransition.setNode(borderPane);
-        fadeTransition.setFromValue(5);
-        fadeTransition.setToValue(0);
-        fadeTransition.play();
-    }
-    private void stageFadeIn()
-    {
-        FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000));
-        fadeTransition.setNode(borderPane);
-        fadeTransition.setFromValue(0);
-        fadeTransition.setToValue(1);
-        fadeTransition.play();
+
+    public void goToSettings(MouseEvent event) {
 
     }
 }

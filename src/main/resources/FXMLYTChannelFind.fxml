@@ -3,16 +3,55 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 
-<AnchorPane fx:id="anchor" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLYTChannelFindController">
-   <children>
-      <JFXListView fx:id="channelList" layoutX="400.0" prefHeight="400.0" prefWidth="300.0" />
-      <JFXTextField fx:id="nickNameField" layoutX="5.0" layoutY="31.0" prefHeight="27.0" prefWidth="393.0" />
-      <JFXButton fx:id="findBtn" defaultButton="true" layoutX="336.0" layoutY="70.0" onAction="#findBtnClick" text="Find" />
-      <Text fx:id="text" layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Input nickname to find YouTube Channel" textAlignment="CENTER" wrappingWidth="375.33935546875" />
-      <JFXButton fx:id="chooseBtn" layoutX="516.0" layoutY="373.0" onAction="#chooseBtnClick" prefHeight="27.0" prefWidth="69.0" text="Choose"/>
-      <JFXButton fx:id="cancelBtn" layoutX="276.0" layoutY="70.0" onAction="#cancelBtnClick" text="Cancel" />
-   </children>
-</AnchorPane>
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="535.0" prefWidth="803.0" stylesheets="@styles/jfoenixCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLYTChannelFindController">
+   <top>
+      <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="31.0" prefWidth="570.0" styleClass="hatbox" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true" styleClass="iconBTN">
+               <image>
+                  <Image url="@icons/close.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#maximize" pickOnBounds="true" preserveRatio="true" styleClass="iconBTN">
+               <image>
+                  <Image url="@icons/resize.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#minimize" pickOnBounds="true" preserveRatio="true" styleClass="iconBTN">
+               <image>
+                  <Image url="@icons/minus.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <AnchorPane fx:id="anchor" prefHeight="468.0" prefWidth="770.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXListView fx:id="channelList" layoutX="456.0" layoutY="14.0" prefHeight="420.0" prefWidth="299.0" styleClass="listBox" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="14.0" />
+            <JFXTextField fx:id="nickNameField" focusColor="#d5dae8" layoutX="5.0" layoutY="31.0" prefHeight="27.0" prefWidth="393.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="385.0" AnchorPane.topAnchor="31.0" />
+            <JFXButton id="smallBTN" fx:id="findBtn" defaultButton="true" layoutX="317.0" layoutY="70.0" onAction="#findBtnClick" text="Find" AnchorPane.rightAnchor="427.0" AnchorPane.topAnchor="70.0" />
+            <JFXButton id="smallBTN" fx:id="chooseBtn" layoutX="686.0" layoutY="452.0" onAction="#chooseBtnClick" prefHeight="27.0" prefWidth="69.0" text="Choose" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="28.0" />
+            <JFXButton id="smallBTN" fx:id="cancelBtn" layoutX="374.0" layoutY="70.0" onAction="#cancelBtnClick" text="Cancel" AnchorPane.rightAnchor="360.0" AnchorPane.topAnchor="70.0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="81.0" layoutY="14.0" prefHeight="13.0" prefWidth="256.0" styleClass="lightText" text="Input chanell name here" textAlignment="CENTER" AnchorPane.leftAnchor="81.0" AnchorPane.topAnchor="14.0" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

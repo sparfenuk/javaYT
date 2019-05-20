@@ -14,13 +14,14 @@ public class Program extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLYTChannelFind.fxml"));
 //        stage.setMinHeight(150.0);
 //        stage.setMinWidth(300.0);
 
         Scene scene = new Scene(root);
 
-        stage.setOpacity(0);
+        //stage.setOpacity(0);
+
         stage.setTitle("Youtube Analytics");
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setResizable(false);
@@ -31,9 +32,9 @@ public class Program extends Application {
     public static void main(String[] args) throws Exception {
 
         //<init>
-        File cacheFolder = new File(Settings.CachePath);
+        File cacheFolder = new File(Settings.CACHEPATH);
         cacheFolder.mkdirs();
-        //</init>
+       //</init>
         System.out.println(Requests.search("PewDiePie","channel",1).get(0).getResult().getChannelTitle());
         Application.launch();
     }

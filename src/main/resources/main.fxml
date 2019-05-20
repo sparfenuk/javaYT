@@ -18,7 +18,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton layoutX="166.0" layoutY="214.0" prefHeight="20.0" prefWidth="270.0" text="Settings" textAlignment="CENTER">
+            <JFXButton layoutX="166.0" layoutY="214.0" onMouseClicked="#goToSettings" prefHeight="20.0" prefWidth="270.0" text="Settings" textAlignment="CENTER">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -35,7 +35,7 @@
       </AnchorPane>
    </center>
    <top>
-      <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="570.0" BorderPane.alignment="CENTER">
+      <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="570.0" styleClass="hatbox" BorderPane.alignment="CENTER">
          <children>
             <ImageView fx:id="close" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true" styleClass="iconBTN">
                <image>
