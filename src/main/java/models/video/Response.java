@@ -1,10 +1,11 @@
-package models.channel;
+package models.video;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import models.shared.PageInfo;
 
-public class Statistic {
+public class Response {
 
     @SerializedName("kind")
     @Expose
@@ -50,5 +51,4 @@ public class Statistic {
     public void setItems(List<Item> items) {
         this.items = items;
     }
-
 }
