@@ -88,7 +88,7 @@ public class Requests {
             models.video.Response resp =  getChannelVideosStatistics(ids);
             for (models.video.Item item: resp.getItems())
                 try {
-                    res += Integer.parseInt(item.getStatistics().getViewCount());
+                    res += Integer.parseInt(item.getStatistics().getCommentCount());
                 }
                 catch (Exception e){
                     System.out.println("Video has no comments");
