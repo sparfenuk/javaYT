@@ -1,5 +1,7 @@
 package controllers;
-
+import javafx.scene.paint.Paint;
+import javafx.stage.DirectoryChooser;
+import utils.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
@@ -18,10 +20,14 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ResourceBundle;
+
+import static java.awt.Color.WHITE;
 
 public class FXMLSettingsController {
 
@@ -86,6 +92,28 @@ public class FXMLSettingsController {
 
     @FXML
     private JFXButton BtnLoadTimeCancel;
+    private Settings settings;
+
+    @FXML
+    void initialize()
+    {
+        if (utils.Settings.ifFileExist())
+        {
+           settings = utils.Settings.deSerealize();
+           // System.out.println(settings);
+        }
+        else
+        {
+            settings = new Settings();
+        }
+
+
+            CacheTrue.setSelected(settings.getCacheSave());
+            LoadTImeTrue.setSelected(settings.getLoadTimeShow());
+        PathTextField.setText(settings.cachePath);
+
+
+    }
 
     public void mainMenu(MouseEvent mouseEvent) {
         try {
@@ -103,36 +131,38 @@ public class FXMLSettingsController {
     }
 
     public void openPathToFile(MouseEvent mouseEvent) {
-        JFileChooser fileopen = new JFileChooser();
-        int ret = fileopen.showDialog(null, "Открыть файл");
-        if (ret == JFileChooser.APPROVE_OPTION) {
-            File file = fileopen.getSelectedFile();
-            PathTextField.setText(file.getPath());
+
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new File("."));
+        chooser.setDialogTitle("Open Directory");
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.setAcceptAllFileFilterUsed(false);
+
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+           //PathTextField.setText(String.valueOf(chooser.getCurrentDirectory()));
+            PathTextField.setText(String.valueOf(chooser.getSelectedFile()));
+
+        } else {
+            System.out.println("No Selection ");
         }
     }
 
 
 
 
-    public void checkTrueCache(ActionEvent actionEvent) { CacheFalse.setDisable(true);
+    public void checkTrueCache(ActionEvent actionEvent) {
+        CacheFalse.setSelected(false);
     }
 
-    public void checkFalseCache(ActionEvent actionEvent) { CacheTrue.setDisable(true);
+    public void checkFalseCache(ActionEvent actionEvent) {  CacheTrue.setSelected(false);
     }
 
-
-    public void btnLoadTimeCancel(MouseEvent mouseEvent) {
-        LoadTImeTrue.setSelected(false);
-        LoadTImeFalse.setSelected(false);
-        LoadTImeTrue.setDisable(false);
-        LoadTImeFalse.setDisable(false);
-    }
 
     public void checkFalseLoadTime(ActionEvent actionEvent) {
-        LoadTImeTrue.setDisable(true);}
+        LoadTImeTrue.setSelected(false);}
 
     public void checkTrueLoadTime(ActionEvent actionEvent) {
-        LoadTImeFalse.setDisable(true);}
+        LoadTImeFalse.setSelected(false);}
 
     @FXML
     public void close(MouseEvent event)
@@ -166,26 +196,41 @@ public class FXMLSettingsController {
         CacheTrue.setSelected(false);
         CacheFalse.setDisable(false);
         CacheTrue.setDisable(false);
+
+        LoadTImeFalse.setSelected(false);
+        LoadTImeTrue.setSelected(false);
+        LoadTImeFalse.setDisable(false);
+        LoadTImeTrue.setDisable(false);
     }
+
+
 
     public void saveSettingsBtn(MouseEvent event) {
-        if (CacheTrue.isSelected() == true)
-        {
-            System.out.print("hello");
-        }
-        else if (CacheFalse.isSelected() == true)
-        {
 
-        }
-        if (LoadTImeTrue.isSelected() == true)
-        {
+            if (!PathTextField.getText().equals(settings.cachePath))
+            {
+                File f = new File(PathTextField.getText());
+                if (f.exists() && f.isDirectory()) {
+                   settings.setCachePath(PathTextField.getText());
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "there is no such folder");
+                }
 
-        }
-        else if (LoadTImeFalse.isSelected() == true)
-        {
+            }
 
+
+            settings.setCacheSave(CacheTrue.isSelected());
+            settings.setLoadTimeShow(LoadTImeTrue.isSelected());
+
+        try {
+            utils.Settings.serealize(settings);
+           // System.out.println(settings);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Cant not save");
         }
     }
+
 
 
     public void goBack(MouseEvent event) {

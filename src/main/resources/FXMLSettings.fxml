@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="400.0" prefWidth="700.0" stylesheets="@styles/jfoenixCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLSettingsController">
+<BorderPane onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="400.0" prefWidth="700.0" stylesheets="@styles/jfoenixCSS.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLSettingsController">
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -45,7 +45,7 @@
                   <Pane id="HBoxPaneSecondId" fx:id="HBoxPaneSecond" prefHeight="248.0" prefWidth="292.0" styleClass="pane">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="87.0" layoutY="14.0" prefHeight="21.0" prefWidth="103.0" styleClass="lightText" text="Path to cache file" />
-                        <JFXTextField id="PathTextFieldId" fx:id="PathTextField" focusColor="#e2e3e8" layoutX="38.0" layoutY="83.0" prefHeight="31.0" prefWidth="202.0" />
+                        <JFXTextField id="PathTextFieldId" fx:id="PathTextField" focusColor="#e2e3e8" layoutX="38.0" layoutY="83.0" prefHeight="31.0" prefWidth="202.0" styleClass="lightText" />
                         <JFXButton id="smallBTN" fx:id="BtnPath" layoutX="98.0" layoutY="173.0" onMouseClicked="#openPathToFile" prefHeight="31.0" prefWidth="84.0" text="Open" />
                      </children>
                   </Pane>
