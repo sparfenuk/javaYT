@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import models.channel.Channel;
-import models.channel.Statistics;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +18,7 @@ public class Requests {
 
     public static Channel getChannel(String channelid) throws Exception {
         String json = "";
-        File cacheFile = new File(Settings.CACHEPATH + Objects.hash(channelid) + ".json");
+        File cacheFile = new File(Settings.CACHEPATH + Objects.hash(channelid+"getChannel") + ".json");
         if (!cacheFile.createNewFile()) {
 
             if (cacheFile.lastModified() + Settings.CACHELIFETIME * 1000 < System.currentTimeMillis()) {
@@ -88,7 +88,7 @@ public class Requests {
             models.video.Response resp =  getChannelVideosStatistics(ids);
             for (models.video.Item item: resp.getItems())
                 try {
-                    res += Integer.parseInt(item.getStatistics().getCommentCount());
+                    res += Integer.parseInt(item.getStatistics().getViewCount());
                 }
                 catch (Exception e){
                     System.out.println("Video has no comments");
@@ -102,7 +102,7 @@ public class Requests {
 
     private static models.search.Response getChannelVideosId(String channelid, String nextPageToken) throws Exception {
         String json = "";
-        File cacheFile = new File(Settings.CACHEPATH + Objects.hash(channelid + nextPageToken) + ".json");
+        File cacheFile = new File(Settings.CACHEPATH + Objects.hash(channelid+"getChannelVideosId" + nextPageToken) + ".json");
         if (!cacheFile.createNewFile()) {
 
             if (cacheFile.lastModified() + Settings.CACHELIFETIME * 1000 < System.currentTimeMillis()) {
