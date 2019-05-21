@@ -74,3 +74,9 @@
     -fx-hgap: 22;
     -fx-padding: 22;
 }
+
+
+.detailInfoLabel
+{
+  -fx-font-size: 22;
+}
