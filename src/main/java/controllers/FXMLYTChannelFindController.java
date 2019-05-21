@@ -1,14 +1,20 @@
 package controllers;
 
+import animation.RotationAnimation;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.animation.RotateTransition;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -24,13 +30,41 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.Duration;
+import models.channel.Channel;
+import models.channel.Statistics;
 import models.search.Item;
+import utils.Requests;
 
 
 public class FXMLYTChannelFindController {
+
+    public Circle circle1;
+    public Circle circle2;
+    public Circle circle3;
+    private RotateTransition rotation1;
+    private RotateTransition rotation2;
+    private RotateTransition rotation3;
+
+
+    @FXML
+    private Label name;
+
+    @FXML
+    private Label subs;
+    @FXML
+    private Label videos;
+    @FXML
+    private Label views;
+    @FXML
+    private Label date;
+
+    @FXML
+    private ImageView channelImage;
 
     @FXML
     private BorderPane borderPane;
@@ -40,6 +74,9 @@ public class FXMLYTChannelFindController {
 
     @FXML
     private AnchorPane anchor;
+
+    @FXML
+    private AnchorPane contentAnc;
 
     @FXML
     private URL location;
@@ -67,6 +104,7 @@ public class FXMLYTChannelFindController {
 
 
     private double x, y;
+    RotationAnimation animation;
 
     public String getChosenChanelId() {
         return chosenChanelId;
@@ -145,23 +183,27 @@ public class FXMLYTChannelFindController {
 
     @FXML
     void chooseBtnClick(ActionEvent event) {
-        if (channelList.getSelectionModel().getSelectedIndex() >= 0) {
-            chosenChanelId = channelList.getItems().get(channelList.getSelectionModel().getSelectedIndex()).chanelId;
-            cancelBtnClick(event);
-        }
+
+
+
+//        if (channelList.getSelectionModel().getSelectedIndex() >= 0) {
+//            chosenChanelId = channelList.getItems().get(channelList.getSelectionModel().getSelectedIndex()).chanelId;
+//            cancelBtnClick(event);
+//        }
     }
 
     @FXML
     void findBtnClick(ActionEvent event) {
 
+       animation.play();
         channelList.getItems().clear();
 
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 try {
-                    List<Item> channels = utils.Requests.search(nickNameField.getText(), "channel", 4);
-
+                    List<Item> channels = utils.Requests.search(nickNameField.getText(), "channel", 14);
+                   animation.stop();
                     for (Item i : channels)
                         Platform.runLater(() ->
                                 channelList.getItems().add(
@@ -181,12 +223,42 @@ public class FXMLYTChannelFindController {
     @FXML
     void initialize() {
 
+
+        animation = new RotationAnimation();
+        animation.add(setRotationSpec(circle1,10,360));
+        animation.add(setRotationSpec(circle2,15,180));
+        animation.add(setRotationSpec(circle3,19,145));
+        animation.stop();
+
         channelList.setCellFactory(new Callback<ListView<Cell>, ListCell<Cell>>() {
             @Override
             public ListCell<Cell> call(ListView<Cell> listView) {
                 return new ListCells();
             }
         });
+       channelList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Cell>() {
+           @Override
+           public void changed(ObservableValue<? extends Cell> observable, Cell oldValue, Cell newValue) {
+
+               try {
+                   Channel channel = Requests.getChannel(observable.getValue().getChanelId());
+                   name.setText(channel.getInfo().getTitle());
+                   Statistics s = channel.getStatistics();
+                   subs.setText("subscribers: "+s.getSubscriberCount());
+                   views.setText("views: "+s.getViewCount());
+                   channelImage.setImage(new Image(channel.getInfo().getThumbnails().getHigh().getUrl()));
+                   videos.setText("videos: "+s.getVideoCount());
+
+                   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                   SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd");
+                   Date d = sdf.parse(channel.getInfo().getPublishedAt());
+                   date.setText(output.format(d));
+
+               } catch (Exception e) {
+                   e.printStackTrace();
+               }
+           }
+       });
 
 
     }
@@ -225,4 +297,34 @@ public class FXMLYTChannelFindController {
             stage.setFullScreen(false);
 
     }
+
+    private RotateTransition setRotationSpec(Circle circle, int duration, int angle)
+    {   RotateTransition rotateTransition = new RotateTransition(Duration.seconds(duration),circle);
+        rotateTransition.setByAngle(angle);
+        rotateTransition.setAutoReverse(true);
+        rotateTransition.setRate(3);
+        rotateTransition.setCycleCount(18);
+        rotateTransition.setDelay(Duration.millis(0));
+
+        return rotateTransition;
+    }
+//    private void startRotationAndShow()
+//    {
+//        rotation1.play();
+//        rotation2.play();
+//        rotation3.play();
+//        circle1.setVisible(true);
+//        circle2.setVisible(true);
+//        circle3.setVisible(true);
+//    }
+//    private void stopRotationAndHide()
+//    {
+//        rotation1.stop();
+//        rotation2.stop();
+//        rotation3.stop();
+//        circle1.setVisible(false);
+//        circle2.setVisible(false);
+//        circle3.setVisible(false);
+//
+//    }
 }
