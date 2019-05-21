@@ -9,7 +9,14 @@
 	-fx-heigh: 420;
 }
 
-
+.list-view .list-cell:even {
+    -fx-background-color: #282828;
+    -fx-text-fill: black;
+}
+.list-view .list-cell:odd {
+    -fx-background-color: #282828;
+    -fx-text-fill: black;
+}
 
 .jfx-button {
 	 -fx-alignment: CENTER;
