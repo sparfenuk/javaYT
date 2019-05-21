@@ -6,6 +6,8 @@ import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -33,7 +35,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
+import models.channel.Channel;
+import models.channel.Statistics;
 import models.search.Item;
+import utils.Requests;
 
 
 public class FXMLYTChannelFindController {
@@ -197,7 +202,7 @@ public class FXMLYTChannelFindController {
             @Override
             public void run() {
                 try {
-                    List<Item> channels = utils.Requests.search(nickNameField.getText(), "channel", 4);
+                    List<Item> channels = utils.Requests.search(nickNameField.getText(), "channel", 14);
                    animation.stop();
                     for (Item i : channels)
                         Platform.runLater(() ->
@@ -234,7 +239,24 @@ public class FXMLYTChannelFindController {
        channelList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Cell>() {
            @Override
            public void changed(ObservableValue<? extends Cell> observable, Cell oldValue, Cell newValue) {
-             // todo: on selectedIndexChanged make the preview fill
+
+               try {
+                   Channel channel = Requests.getChannel(observable.getValue().getChanelId());
+                   name.setText(channel.getInfo().getTitle());
+                   Statistics s = channel.getStatistics();
+                   subs.setText("subscribers: "+s.getSubscriberCount());
+                   views.setText("views: "+s.getViewCount());
+                   channelImage.setImage(new Image(channel.getInfo().getThumbnails().getHigh().getUrl()));
+                   videos.setText("videos: "+s.getVideoCount());
+
+                   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                   SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd");
+                   Date d = sdf.parse(channel.getInfo().getPublishedAt());
+                   date.setText(output.format(d));
+
+               } catch (Exception e) {
+                   e.printStackTrace();
+               }
            }
        });
 
