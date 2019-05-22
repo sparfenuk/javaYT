@@ -50,32 +50,32 @@ public class FXMLYTAController {
 
     @FXML
     void compareChnlsBtnClick(ActionEvent event) {
-        openFind(2);
+        openFind(2,event);
     }
 
     @FXML
     void compareMediaResonanceBtnClick(ActionEvent event) {
-        openFind(5);
+        openFind(5,event);
     }
 
     @FXML
     void globalInfBtnClick(ActionEvent event) {
-        openFind(1);
+        openFind(1,event);
     }
 
     @FXML
     void mediaResonanceBtnClick(ActionEvent event) {
-        openFind(4);
+        openFind(4,event);
     }
 
     @FXML
     void sortChnlsBtnClick(ActionEvent event) {
-        openFind(3);
+        openFind(3,event);
     }
 
     @FXML
     void sortMediaResonanceBtnClick(ActionEvent event) {
-        openFind(6);
+        openFind(6,event);
     }
 
     @FXML
@@ -86,8 +86,12 @@ public class FXMLYTAController {
             int fontSize = (int)((width + height)/18);
 
             for (int i = 0 ; i < grid.getChildren().size() ; i++){
-                ((JFXButton)grid.getChildren().get(i)).setPrefSize(width,height);
-                grid.getChildren().get(i).setStyle("-fx-font: " + fontSize +" arial;");
+                try {
+                    ((JFXButton) grid.getChildren().get(i)).setPrefSize(width, height);
+                    grid.getChildren().get(i).setStyle("-fx-font: " + fontSize + " arial;");
+                }
+                catch (Exception e){}
+
             }
         };
 
@@ -131,7 +135,7 @@ public class FXMLYTAController {
 
     }
 
-    public void openFind(int type){
+    public void openFind(int type, ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLYTChannelFind.fxml"));
             Parent root1 = (Parent) loader.load();
@@ -143,7 +147,9 @@ public class FXMLYTAController {
             FXMLYTChannelFindController controllerEditBook = loader.<FXMLYTChannelFindController>getController();
             controllerEditBook.setType(type);
             stage.show();
-            this.close(null);
+
+            Stage stage1 = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+            stage1.close();
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -251,6 +251,7 @@ public class FXMLYTChannelFindController {
                 @Override
                 public void changed(ObservableValue<? extends Cell> observable, Cell oldValue, Cell newValue) {
                     try {
+
                         Channel channel = Requests.getChannel(observable.getValue().getChanelId());
                         name.setText(channel.getInfo().getTitle());
                         Statistics s = channel.getStatistics();
