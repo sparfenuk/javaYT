@@ -140,6 +140,16 @@
                                     <Font size="18.0"/>
                                 </font>
                             </Label>
+                            <Label fx:id="comText1" text="Comments count:">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label fx:id="commentsCountText1">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
 
                         </children>
                         <opaqueInsets>
@@ -199,6 +209,16 @@
                                 </font>
                             </Label>
                             <Label fx:id="watchesCountText2">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label fx:id="comText2" text="Comments count:">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label fx:id="commentsCountText2">
                                 <font>
                                     <Font size="18.0"/>
                                 </font>

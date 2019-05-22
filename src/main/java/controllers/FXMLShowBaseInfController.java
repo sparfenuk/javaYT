@@ -87,10 +87,25 @@ public class FXMLShowBaseInfController {
     @FXML
     private Label watchesCountText2;
 
+    @FXML
+    private Label commentsCountText1;
+
+    @FXML
+    private Label commentsCountText2;
+
+    @FXML
+    private Label comText1;
+
+    @FXML
+    private Label comText2;
+
     private boolean isComments;
 
     public void setComments(boolean comments) {
         isComments = comments;
+
+        comText1.setVisible(comments);
+        comText2.setVisible(comments);
     }
 
     public void setTextId1(String channelId){
@@ -127,7 +142,11 @@ public class FXMLShowBaseInfController {
                             subsCountText1.setText(channel.getStatistics().getSubscriberCount());
                             videosCountText1.setText(channel.getStatistics().getVideoCount());
                             watchesCountText1.setText(channel.getStatistics().getViewCount());
-
+                            if(isComments)
+                                try {
+                                    commentsCountText1.setText(String.valueOf(Requests.getChannelsResonanse(channel.getId())[0]));
+                                }
+                                catch (Exception e){e.printStackTrace();}
                             check();
                         });
 
@@ -167,6 +186,11 @@ public class FXMLShowBaseInfController {
                             watchesCountText2.setText(channel.getStatistics().getViewCount());
                             channelImageView2.setImage(new Image(channel.getInfo().getThumbnails().getDefault().getUrl()));
 
+                            if(isComments)
+                                try {
+                                    commentsCountText2.setText(String.valueOf(Requests.getChannelsResonanse(channel.getId())[0]));
+                                }
+                            catch (Exception e){e.printStackTrace();}
                             check();
                         });
 
