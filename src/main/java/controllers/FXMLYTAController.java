@@ -7,10 +7,15 @@ import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class FXMLYTAController {
 
@@ -45,32 +50,32 @@ public class FXMLYTAController {
 
     @FXML
     void compareChnlsBtnClick(ActionEvent event) {
-
+        openFind(2);
     }
 
     @FXML
     void compareMediaResonanceBtnClick(ActionEvent event) {
-
+        openFind(5);
     }
 
     @FXML
     void globalInfBtnClick(ActionEvent event) {
-
+        openFind(1);
     }
 
     @FXML
     void mediaResonanceBtnClick(ActionEvent event) {
-
+        openFind(4);
     }
 
     @FXML
     void sortChnlsBtnClick(ActionEvent event) {
-
+        openFind(3);
     }
 
     @FXML
     void sortMediaResonanceBtnClick(ActionEvent event) {
-
+        openFind(6);
     }
 
     @FXML
@@ -124,5 +129,24 @@ public class FXMLYTAController {
         else
             stage.setFullScreen(false);
 
+    }
+
+    public void openFind(int type){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLYTChannelFind.fxml"));
+            Parent root1 = (Parent) loader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Find Channel");
+            stage.setScene(new Scene(root1));
+            FXMLYTChannelFindController controllerEditBook = loader.<FXMLYTChannelFindController>getController();
+            controllerEditBook.setType(type);
+            stage.show();
+            this.close(null);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

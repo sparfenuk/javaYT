@@ -50,6 +50,8 @@ public class FXMLYTChannelFindController {
     private RotateTransition rotation2;
     private RotateTransition rotation3;
 
+    //1,2,3,4,5,6
+    private int Type = 1;
 
     @FXML
     private Label name;
@@ -102,6 +104,12 @@ public class FXMLYTChannelFindController {
 
     private String chosenChanelId;
 
+    public void setType(int type){
+        if(type > 6 || type < 1)
+            return;
+
+        this.Type = type;
+    }
 
     private double x, y;
     RotationAnimation animation;
@@ -222,8 +230,6 @@ public class FXMLYTChannelFindController {
 
     @FXML
     void initialize() {
-
-
         animation = new RotationAnimation();
         animation.add(setRotationSpec(circle1,10,360));
         animation.add(setRotationSpec(circle2,15,180));
@@ -236,29 +242,49 @@ public class FXMLYTChannelFindController {
                 return new ListCells();
             }
         });
-       channelList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Cell>() {
-           @Override
-           public void changed(ObservableValue<? extends Cell> observable, Cell oldValue, Cell newValue) {
 
-               try {
-                   Channel channel = Requests.getChannel(observable.getValue().getChanelId());
-                   name.setText(channel.getInfo().getTitle());
-                   Statistics s = channel.getStatistics();
-                   subs.setText("subscribers: "+s.getSubscriberCount());
-                   views.setText("views: "+s.getViewCount());
-                   channelImage.setImage(new Image(channel.getInfo().getThumbnails().getHigh().getUrl()));
-                   videos.setText("videos: "+s.getVideoCount());
 
-                   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-                   SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd");
-                   Date d = sdf.parse(channel.getInfo().getPublishedAt());
-                   date.setText(output.format(d));
+        switch (this.Type) {
 
-               } catch (Exception e) {
-                   e.printStackTrace();
-               }
-           }
-       });
+            case 1:
+            channelList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Cell>() {
+                @Override
+                public void changed(ObservableValue<? extends Cell> observable, Cell oldValue, Cell newValue) {
+                    try {
+                        Channel channel = Requests.getChannel(observable.getValue().getChanelId());
+                        name.setText(channel.getInfo().getTitle());
+                        Statistics s = channel.getStatistics();
+                        subs.setText("subscribers: " + s.getSubscriberCount());
+                        views.setText("views: " + s.getViewCount());
+                        channelImage.setImage(new Image(channel.getInfo().getThumbnails().getHigh().getUrl()));
+                        videos.setText("videos: " + s.getVideoCount());
+
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                        SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd");
+                        Date d = sdf.parse(channel.getInfo().getPublishedAt());
+                        date.setText(output.format(d));
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            break;
+            case 2:
+
+                break;
+            case 3:
+
+            break;
+            case 4:
+                break;
+
+            case 5:
+
+                break;
+
+            case 6:
+        }
 
 
     }

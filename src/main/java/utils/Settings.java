@@ -26,7 +26,7 @@ public class Settings implements Serializable {
     }
 
     public String getCachePath() {
-        return cachePath;
+        return cachePath+"/";
     }
 
     public void setCachePath(String cachePath) {
@@ -81,7 +81,6 @@ public class Settings implements Serializable {
     }
     public static boolean ifFileExist ()
     {
-
         File f = new File("Settings.set");
         if(f.exists() && !f.isDirectory()) {
            return true;
