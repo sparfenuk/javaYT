@@ -71,4 +71,18 @@ public class Channel {
     public void setStatistics(Statistics statistics) {
         this.statistics = statistics;
     }
+
+    @Override
+    public String toString() {
+        return "Channel{" +
+                "kind='" + kind + '\'' +
+                ", etag='" + etag + '\'' +
+                ", id='" + id + '\'' +
+                ", snippet=" + snippet +
+                ", contentDetails=" + contentDetails +
+                ", statistics=" + statistics +
+                ", viewCount=" + viewCount +
+                ", commentCount=" + commentCount +
+                '}';
+    }
 }

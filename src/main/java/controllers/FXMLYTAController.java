@@ -154,15 +154,19 @@ public class FXMLYTAController {
     public void openFind(int type, ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLYTChannelFind.fxml"));
+
+           // FXMLYTChannelFindController controllerEditBook = loader.<FXMLYTChannelFindController>getController();
+           FXMLYTChannelFindController.setType(type);
+
             Parent root1 = (Parent) loader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle("Find Channel");
             stage.setScene(new Scene(root1));
-            FXMLYTChannelFindController controllerEditBook = loader.<FXMLYTChannelFindController>getController();
-            controllerEditBook.setType(type);
             stage.show();
+
+           // controllerEditBook.setType(type);
 
             Stage stage1 = (Stage)  ((Node)event.getSource()).getScene().getWindow();
             stage1.close();

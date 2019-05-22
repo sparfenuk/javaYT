@@ -240,7 +240,9 @@ public class FXMLShowBaseInfController {
         stage.show();
         current.close();
     }
-    @FXML
+
+
+
     public void close(MouseEvent event)
     {
         Stage stage = (Stage)  ((Node)event.getSource()).getScene().getWindow();

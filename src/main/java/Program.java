@@ -14,7 +14,7 @@ public class Program extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLYTChannelFind.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
 //        stage.setMinHeight(150.0);
 //        stage.setMinWidth(300.0);
 

@@ -4,7 +4,9 @@
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -14,7 +16,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Circle?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="535.0" prefWidth="803.0" stylesheets="@styles/jfoenixCSS.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLYTChannelFindController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="535.0" prefWidth="803.0" stylesheets="@styles/jfoenixCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLYTChannelFindController">
    <top>
       <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="31.0" prefWidth="570.0" styleClass="hatbox" BorderPane.alignment="CENTER">
          <children>
@@ -58,9 +60,9 @@
             </StackPane>
             <JFXTextField fx:id="nickNameField" focusColor="#d5dae8" layoutX="5.0" layoutY="31.0" prefHeight="27.0" prefWidth="393.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="385.0" AnchorPane.topAnchor="31.0" />
             <JFXButton id="smallBTN" fx:id="findBtn" defaultButton="true" layoutX="317.0" layoutY="70.0" onAction="#findBtnClick" text="Find" AnchorPane.rightAnchor="427.0" AnchorPane.topAnchor="70.0" />
-            <JFXButton id="smallBTN" fx:id="chooseBtn" layoutX="686.0" layoutY="452.0" onAction="#chooseBtnClick" prefHeight="27.0" prefWidth="69.0" text="Choose" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="28.0" />
+            <JFXButton id="smallBTN" fx:id="chooseBtn" layoutX="572.0" layoutY="446.0" onAction="#chooseBtnClick" prefHeight="27.0" prefWidth="69.0" text="Choose" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="142.0" />
             <JFXButton id="smallBTN" fx:id="cancelBtn" layoutX="374.0" layoutY="70.0" onAction="#cancelBtnClick" text="Cancel" AnchorPane.rightAnchor="360.0" AnchorPane.topAnchor="70.0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="81.0" layoutY="14.0" prefHeight="13.0" prefWidth="256.0" styleClass="lightText" text="Input chanell name here" textAlignment="CENTER" AnchorPane.leftAnchor="81.0" AnchorPane.topAnchor="14.0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="81.0" layoutY="14.0" prefHeight="13.0" prefWidth="256.0" styleClass="lightText" text="Input channel name here" textAlignment="CENTER" AnchorPane.leftAnchor="81.0" AnchorPane.topAnchor="14.0" />
             <ImageView fx:id="channelImage" fitHeight="189.0" fitWidth="230.0" layoutX="14.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="539.0" AnchorPane.topAnchor="114.0" />
             <Label fx:id="name" layoutX="243.0" layoutY="114.0" prefHeight="78.0" prefWidth="184.0" AnchorPane.bottomAnchor="292.0" AnchorPane.leftAnchor="243.0" AnchorPane.rightAnchor="356.0" AnchorPane.topAnchor="114.0">
                <styleClass>
@@ -74,24 +76,54 @@
                   <String fx:value="detailInfoLabel" />
                </styleClass>
             </Label>
-            <Label fx:id="views" layoutX="14.0" layoutY="433.0" prefHeight="35.0" prefWidth="438.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="331.0" AnchorPane.topAnchor="433.0">
+            <Label fx:id="views" layoutX="14.0" layoutY="396.0" prefHeight="37.0" prefWidth="458.0" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="331.0" AnchorPane.topAnchor="396.0">
                <styleClass>
                   <String fx:value="lightText" />
                   <String fx:value="detailInfoLabel" />
                </styleClass>
             </Label>
-            <Label fx:id="videos" layoutX="14.0" layoutY="382.0" prefHeight="35.0" prefWidth="431.0" AnchorPane.bottomAnchor="67.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="331.0" AnchorPane.topAnchor="382.0">
+            <Label fx:id="videos" layoutX="14.0" layoutY="360.0" prefHeight="35.0" prefWidth="438.0" AnchorPane.bottomAnchor="99.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="331.0" AnchorPane.topAnchor="360.0">
                <styleClass>
                   <String fx:value="lightText" />
                   <String fx:value="detailInfoLabel" />
                </styleClass>
             </Label>
-            <Label fx:id="subs" contentDisplay="TOP" layoutX="14.0" layoutY="325.0" prefHeight="35.0" prefWidth="433.0" AnchorPane.bottomAnchor="124.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="336.0" AnchorPane.topAnchor="325.0">
+            <Label fx:id="subs" contentDisplay="TOP" layoutX="14.0" layoutY="325.0" prefHeight="35.0" prefWidth="433.0" AnchorPane.bottomAnchor="139.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="336.0" AnchorPane.topAnchor="325.0">
                <styleClass>
                   <String fx:value="lightText" />
                   <String fx:value="detailInfoLabel" />
                </styleClass>
             </Label>
+            <ComboBox fx:id="sortBy" layoutX="437.0" layoutY="451.0" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="271.0">
+               <items>
+                  <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="Name" />
+                     <String fx:value="Date" />
+                     <String fx:value="Subs" />
+                     <String fx:value="Video" />
+                     <String fx:value="View" />
+                  </FXCollections>
+               </items>
+               <value>
+                  <String fx:value="Name" />
+               </value>
+            </ComboBox>
+            <ImageView fx:id="forwardBtn" fitHeight="49.0" fitWidth="69.0" layoutX="720.0" layoutY="438.0" onMouseClicked="#forward" pickOnBounds="true" preserveRatio="true" rotate="180.0" styleClass="iconBTN" AnchorPane.bottomAnchor="-3.0" AnchorPane.rightAnchor="14.0">
+               <image>
+                  <Image url="@icons/arrow_back.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="comments" layoutX="15.0" layoutY="439.0" prefHeight="37.0" prefWidth="458.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="310.0" AnchorPane.topAnchor="439.0">
+               <styleClass>
+                  <String fx:value="lightText" />
+                  <String fx:value="detailInfoLabel" />
+               </styleClass>
+            </Label>
+            <ImageView fitHeight="38.0" fitWidth="50.0" layoutX="-4.0" layoutY="-5.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true" styleClass="iconBTN">
+               <image>
+                  <Image url="@icons/arrow_back.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </center>
