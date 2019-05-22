@@ -13,12 +13,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class Requests {
-
+    
     public static Channel getChannel(String channelid) throws Exception {
         String json = "";
-        File cacheFile = new File(Settings.CACHEPATH + Objects.hash(channelid+"getChannel") + ".json");
+        File cacheFile = new File(getCachePath() + Objects.hash(channelid+"getChannel") + ".json");
         if (!cacheFile.createNewFile()) {
 
             if (cacheFile.lastModified() + Settings.CACHELIFETIME * 1000 < System.currentTimeMillis()) {
@@ -45,7 +46,7 @@ public class Requests {
     //channel,playlist,video
     public static List<models.search.Item> search(String query, String type, int maxresults) throws Exception {
         String json = "";
-        File cacheFile = new File(Settings.CACHEPATH + Objects.hash(query, type, maxresults) + ".json");
+        File cacheFile = new File(getCachePath() + Objects.hash(query, type, maxresults) + ".json");
         if (!cacheFile.createNewFile()) {
             System.out.println(cacheFile.lastModified());
             if (cacheFile.lastModified() + Settings.CACHELIFETIME * 1000 < System.currentTimeMillis()) {
@@ -68,9 +69,10 @@ public class Requests {
 
         return new Gson().fromJson(json, models.search.Response.class).getItems();
     }
-
-    public static long getChannelCommentsCount(String channelId) throws Exception {
-        int res = 0;
+    // @returns 2 numbers 1-st - channels comments quantity 2-nd - channels views count
+    public static long[] getChannelsResonanse(String channelId) throws Exception {
+        long[] res = new long[2];
+        int comm = 0, views = 0;
         models.search.Response r = Requests.getChannelVideosId(channelId, "");
         int total = r.getPageInfo().getTotalResults(), per = r.getPageInfo().getResultsPerPage()-1;
         if (total > per)
@@ -88,13 +90,16 @@ public class Requests {
             models.video.Response resp =  getChannelVideosStatistics(ids);
             for (models.video.Item item: resp.getItems())
                 try {
-                    res += Integer.parseInt(item.getStatistics().getCommentCount());
+                    comm += Integer.parseInt(item.getStatistics().getCommentCount());
+                    views += Integer.parseInt(item.getStatistics().getViewCount());
                 }
                 catch (Exception e){
                     System.out.println("Video has no comments");
                 }
 
         }
+        res[0] = comm;
+        res[1] = views;
         //System.out.println(ids);
         return res;
     }
@@ -102,7 +107,7 @@ public class Requests {
 
     private static models.search.Response getChannelVideosId(String channelid, String nextPageToken) throws Exception {
         String json = "";
-        File cacheFile = new File(Settings.CACHEPATH + Objects.hash(channelid+"getChannelVideosId" + nextPageToken) + ".json");
+        File cacheFile = new File(getCachePath() + Objects.hash(channelid+"getChannelVideosId" + nextPageToken) + ".json");
         if (!cacheFile.createNewFile()) {
 
             if (cacheFile.lastModified() + Settings.CACHELIFETIME * 1000 < System.currentTimeMillis()) {
@@ -131,7 +136,7 @@ public class Requests {
 
     private static models.video.Response getChannelVideosStatistics(String videos) throws Exception {
         String json = "";
-        File cacheFile = new File(Settings.CACHEPATH + Objects.hash(videos) + ".json");
+        File cacheFile = new File(getCachePath() + Objects.hash(videos) + ".json");
         if (!cacheFile.createNewFile()) {
 
             if (cacheFile.lastModified() + Settings.CACHELIFETIME * 1000 < System.currentTimeMillis()) {
@@ -159,4 +164,9 @@ public class Requests {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, encoding);
     }
+    
+    private static String getCachePath(){
+      return Settings.deSerealize().getCachePath();
+    }
+    
 }

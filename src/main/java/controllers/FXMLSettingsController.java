@@ -108,9 +108,15 @@ public class FXMLSettingsController {
         }
 
 
-            CacheTrue.setSelected(settings.getCacheSave());
-            LoadTImeTrue.setSelected(settings.getLoadTimeShow());
-        PathTextField.setText(settings.cachePath);
+        if(settings.getCacheSave())
+            CacheTrue.setSelected(true);
+        else CacheFalse.setSelected(true);
+
+        if(settings.getLoadTimeShow())
+            LoadTImeTrue.setSelected(true);
+        else LoadTImeFalse.setSelected(true);
+
+         PathTextField.setText(settings.cachePath);
 
 
     }
@@ -120,15 +126,19 @@ public class FXMLSettingsController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("ABC");
+            stage.setTitle("Youtube Analytics");
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setResizable(false);
             stage.setScene(new Scene(root1));
             stage.show();
+            this.close(mouseEvent);
         }
         catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
 
     public void openPathToFile(MouseEvent mouseEvent) {
 
@@ -192,15 +202,17 @@ public class FXMLSettingsController {
     }
 
     public void cancelSettingsBtn(MouseEvent event) {
-        CacheFalse.setSelected(false);
-        CacheTrue.setSelected(false);
-        CacheFalse.setDisable(false);
-        CacheTrue.setDisable(false);
+//        CacheFalse.setSelected(false);
+//        CacheTrue.setSelected(false);
+//        CacheFalse.setDisable(false);
+//        CacheTrue.setDisable(false);
+//
+//        LoadTImeFalse.setSelected(false);
+//        LoadTImeTrue.setSelected(false);
+//        LoadTImeFalse.setDisable(false);
+//        LoadTImeTrue.setDisable(false);
 
-        LoadTImeFalse.setSelected(false);
-        LoadTImeTrue.setSelected(false);
-        LoadTImeFalse.setDisable(false);
-        LoadTImeTrue.setDisable(false);
+        mainMenu(event);
     }
 
 
@@ -227,12 +239,10 @@ public class FXMLSettingsController {
             utils.Settings.serealize(settings);
            // System.out.println(settings);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Cant not save");
+            JOptionPane.showMessageDialog(null, "Can not save");
         }
     }
 
 
 
-    public void goBack(MouseEvent event) {
-    }
 }
