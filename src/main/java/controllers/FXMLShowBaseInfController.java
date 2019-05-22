@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,12 +14,14 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -27,6 +30,8 @@ import models.channel.Channel;
 import utils.Requests;
 
 public class FXMLShowBaseInfController {
+
+    private double x, y;
 
     @FXML
     private ResourceBundle resources;
@@ -81,6 +86,21 @@ public class FXMLShowBaseInfController {
 
     @FXML
     private Label watchesCountText2;
+
+    private boolean isComments;
+
+    public void setComments(boolean comments) {
+        isComments = comments;
+    }
+
+    public void setTextId1(String channelId){
+        channelId1.setText(channelId);
+        channelId1KeyInput(null);
+    }
+    public void setTextId2(String channelId){
+        channelId2.setText(channelId);
+        channelId2KeyInput(null);
+    }
 
     @FXML
     void channelId1KeyInput(KeyEvent event) {
@@ -160,44 +180,95 @@ public class FXMLShowBaseInfController {
         }
     }
 
-    @FXML
-    void findBtn1OnAction(ActionEvent event) {
-        String channelId = getChannelId();
-        channelId1.setText(channelId);
-        channelId1KeyInput(null);
-    }
-
-    @FXML
-    void findBtn2OnAction(ActionEvent event) {
-        String chanelId = getChannelId();
-        channelId2.setText(chanelId);
-        channelId2KeyInput(null);
-    }
+//    @FXML
+//    void findBtn1OnAction(ActionEvent event) {
+//        String channelId = getChannelId();
+//        channelId1.setText(channelId);
+//        channelId1KeyInput(null);
+//    }
+//
+//    @FXML
+//    void findBtn2OnAction(ActionEvent event) {
+//        String chanelId = getChannelId();
+//        channelId2.setText(chanelId);
+//        channelId2KeyInput(null);
+//    }
 
     @FXML
     void initialize() {
 
 
     }
+    @FXML
+    public void goBack(MouseEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXMLYTAnalitics.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
 
-    private String getChannelId() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLYTChannelFind.fxml"));
-            Parent root1 = (Parent) loader.load();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("Find Channel");
-            stage.setScene(new Scene(root1));
-            FXMLYTChannelFindController controllerEditBook = loader.<FXMLYTChannelFindController>getController();
-            stage.showAndWait();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
 
-            return controllerEditBook.getChosenChanelId();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "not found";
-        }
+        stage.setTitle("Youtube channels");
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setScene(scene);
+
+        Stage current = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+
+        stage.show();
+        current.close();
     }
+    @FXML
+    public void close(MouseEvent event)
+    {
+        Stage stage = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
+    public void minimize(MouseEvent event) {
+        Stage stage = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+
+
+    public void pressed(MouseEvent event) {
+        x = event.getSceneX();
+        y = event.getSceneY();
+    }
+
+    public void dragged(MouseEvent event) {
+        Stage stage = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+        stage.setX(event.getScreenX()-x);
+        stage.setY(event.getScreenY()-y);
+    }
+
+    public void maximize(MouseEvent event)
+    {
+        Stage stage = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+        if (!stage.isFullScreen())
+            stage.setFullScreen(true);
+        else
+            stage.setFullScreen(false);
+
+    }
+
+//    private String getChannelId() {
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLYTChannelFind.fxml"));
+//            Parent root1 = (Parent) loader.load();
+//            Stage stage = new Stage();
+//            stage.initModality(Modality.APPLICATION_MODAL);
+//            stage.initStyle(StageStyle.UNDECORATED);
+//            stage.setTitle("Find Channel");
+//            stage.setScene(new Scene(root1));
+//            FXMLYTChannelFindController controllerEditBook = loader.<FXMLYTChannelFindController>getController();
+//            stage.showAndWait();
+//
+//            return controllerEditBook.getChosenChanelId();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return "not found";
+//        }
+//    }
 
     private void check() {
         if (chaneNameText1.getText().length() > 0 && chaneNameText2.getText().length() > 0) {

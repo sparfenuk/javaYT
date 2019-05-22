@@ -13,174 +13,209 @@
 <?import javafx.scene.text.Text?>
 
 <?import javafx.scene.control.Label?>
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-          prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLShowBaseInfController">
-    <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="293.0"/>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="0.0" prefWidth="0.0"/>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="295.0"/>
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="102.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="309.0" minHeight="10.0" prefHeight="298.0" vgrow="SOMETIMES"/>
-    </rowConstraints>
-
-    <children>
-        <JFXTextField fx:id="channelId1" onKeyTyped="#channelId1KeyInput" prefHeight="22.0" prefWidth="228.0"/>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Input Channel id or find it using our picker →">
-            <GridPane.margin>
-                <Insets bottom="30.0"/>
-            </GridPane.margin>
-        </Text>
-        <JFXButton fx:id="findBtn1" onAction="#findBtn1OnAction" text="Find id" GridPane.halignment="RIGHT">
-            <GridPane.margin>
-                <Insets bottom="30.0" right="35.0"/>
-            </GridPane.margin>
-        </JFXButton>
-
-        <Separator orientation="VERTICAL" prefHeight="298.0" prefWidth="1.0" GridPane.columnIndex="1"
-                   GridPane.rowSpan="2"/>
-
-        <JFXTextField fx:id="channelId2" onKeyTyped="#channelId2KeyInput" prefHeight="22.0" prefWidth="228.0"
-                      GridPane.columnIndex="2"/>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Input Channel id or find it using our picker →"
-              GridPane.columnIndex="2">
-            <GridPane.margin>
-                <Insets bottom="30.0"/>
-            </GridPane.margin>
-        </Text>
-        <JFXButton fx:id="findBtn2" onAction="#findBtn2OnAction" text="Find id" GridPane.columnIndex="2"
-                   GridPane.halignment="RIGHT">
-            <GridPane.margin>
-                <Insets bottom="30.0" right="30.0"/>
-            </GridPane.margin>
-        </JFXButton>
-        <ImageView fx:id="channelImageView1" GridPane.halignment="RIGHT" GridPane.rowIndex="1"
-                          GridPane.valignment="TOP">
-        <GridPane.margin>
-            <Insets right="15.0" top="15.0"/>
-        </GridPane.margin>
-    </ImageView>
-        <VBox spacing="5.0" GridPane.rowIndex="1">
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<BorderPane fx:controller="controllers.FXMLShowBaseInfController" xmlns="http://javafx.com/javafx/8.0.172-ea"
+            xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" stylesheets="@styles/jfoenixCSS.css"
+            prefWidth="600.0">
+    <top>
+        <HBox alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="19.0" prefWidth="700.0" styleClass="hatbox" BorderPane.alignment="CENTER">
             <children>
-                <Label fx:id="chaneNameText1">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-                <Label text="Created:">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-                <Label fx:id="createdDateText1">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-                <Label text="Subs count:">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-                <Label fx:id="subsCountText1" >
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-                <Label  text="Videos count:">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-                <Label fx:id="videosCountText1">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Watches count:">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Text>
-                <Label fx:id="watchesCountText1">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-
+                <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#minimize" pickOnBounds="true" preserveRatio="true" styleClass="iconBTN">
+                    <image>
+                        <Image url="@icons/minus.png" />
+                    </image>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </ImageView>
+                <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true" styleClass="iconBTN">
+                    <image>
+                        <Image url="@icons/close.png" />
+                    </image>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </ImageView>
             </children>
-            <opaqueInsets>
-                <Insets/>
-            </opaqueInsets>
-            <GridPane.margin>
-                <Insets/>
-            </GridPane.margin>
-        </VBox>
+        </HBox>
+    </top>
+    <center>
+        <HBox>
+            <ImageView fitHeight="38.0" fitWidth="50.0" layoutX="14.0" layoutY="6.0" onMouseClicked="#goBack"
+                       pickOnBounds="true" preserveRatio="true" styleClass="iconBTN">
+                <image>
+                    <Image url="@icons/arrow_back.png"/>
+                </image>
+            </ImageView>
+            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                      prefHeight="400.0"
+                      prefWidth="600.0"
+            >
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="293.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="0.0" prefWidth="0.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="295.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="102.0" vgrow="SOMETIMES"/>
+                    <RowConstraints maxHeight="309.0" minHeight="10.0" prefHeight="298.0" vgrow="SOMETIMES"/>
+                </rowConstraints>
 
-        <ImageView fx:id="channelImageView2" GridPane.halignment="RIGHT" GridPane.rowIndex="1"
-                   GridPane.valignment="TOP" GridPane.columnIndex="2">
-            <GridPane.margin>
-                <Insets right="15.0" top="15.0"/>
-            </GridPane.margin>
-        </ImageView>
-        <VBox spacing="5.0" GridPane.rowIndex="1"  GridPane.columnIndex="2">
-            <children>
-                <Label fx:id="chaneNameText2">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-                <Label text="Created:">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-                <Label fx:id="createdDateText2">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-                <Label text="Subs count:">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-                <Label fx:id="subsCountText2">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-                <Label  text="Videos count:">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-                <Label fx:id="videosCountText2" >
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-                <Label text="Watches count:">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-                <Label fx:id="watchesCountText2">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
+                <children>
+                    <JFXTextField fx:id="channelId1" onKeyTyped="#channelId1KeyInput" prefHeight="22.0"
+                                  prefWidth="228.0"/>
+                    <Label text="Channel id:">
+                        <GridPane.margin>
+                            <Insets bottom="30.0"/>
+                        </GridPane.margin>
+                    </Label>
 
-            </children>
-            <opaqueInsets>
-                <Insets/>
-            </opaqueInsets>
-            <GridPane.margin>
-                <Insets/>
-            </GridPane.margin>
-        </VBox>
 
-    </children>
+                    <Separator orientation="VERTICAL" prefHeight="298.0" prefWidth="1.0" GridPane.columnIndex="1"
+                               GridPane.rowSpan="2"/>
 
-</GridPane>
+                    <JFXTextField fx:id="channelId2" onKeyTyped="#channelId2KeyInput" prefHeight="22.0"
+                                  prefWidth="228.0"
+                                  GridPane.columnIndex="2"/>
+                    <Label text="Channel 2 id:"
+                          GridPane.columnIndex="2">
+                        <GridPane.margin>
+                            <Insets bottom="30.0"/>
+                        </GridPane.margin>
+                    </Label>
+
+                    <ImageView fx:id="channelImageView1" GridPane.halignment="RIGHT" GridPane.rowIndex="1"
+                               GridPane.valignment="TOP">
+                        <GridPane.margin>
+                            <Insets right="15.0" top="15.0"/>
+                        </GridPane.margin>
+                    </ImageView>
+                    <VBox spacing="5.0" GridPane.rowIndex="1">
+                        <children>
+                            <Label fx:id="chaneNameText1">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label text="Created:">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label fx:id="createdDateText1">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label text="Subs count:">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label fx:id="subsCountText1">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label text="Videos count:">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label fx:id="videosCountText1">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label text="Watches count:">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label fx:id="watchesCountText1">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+
+                        </children>
+                        <opaqueInsets>
+                            <Insets/>
+                        </opaqueInsets>
+                        <GridPane.margin>
+                            <Insets/>
+                        </GridPane.margin>
+                    </VBox>
+
+                    <ImageView fx:id="channelImageView2" GridPane.halignment="RIGHT" GridPane.rowIndex="1"
+                               GridPane.valignment="TOP" GridPane.columnIndex="2">
+                        <GridPane.margin>
+                            <Insets right="15.0" top="15.0"/>
+                        </GridPane.margin>
+                    </ImageView>
+                    <VBox spacing="5.0" GridPane.rowIndex="1" GridPane.columnIndex="2">
+                        <children>
+                            <Label fx:id="chaneNameText2">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label text="Created:">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label fx:id="createdDateText2">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label text="Subs count:">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label fx:id="subsCountText2">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label text="Videos count:">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label fx:id="videosCountText2">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label text="Watches count:">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+                            <Label fx:id="watchesCountText2">
+                                <font>
+                                    <Font size="18.0"/>
+                                </font>
+                            </Label>
+
+                        </children>
+                        <opaqueInsets>
+                            <Insets/>
+                        </opaqueInsets>
+                        <GridPane.margin>
+                            <Insets/>
+                        </GridPane.margin>
+                    </VBox>
+
+                </children>
+
+            </GridPane>
+        </HBox>
+    </center>
+</BorderPane>
