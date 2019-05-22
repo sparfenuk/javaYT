@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.image.Image?>
-<BorderPane fx:controller="controllers.FXMLShowBaseInfController" xmlns="http://javafx.com/javafx/8.0.172-ea"
-            xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" stylesheets="@styles/jfoenixCSS.css"
-            prefWidth="600.0">
+<BorderPane prefHeight="400.0" prefWidth="600.0" stylesheets="@styles/jfoenixCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLShowBaseInfController">
     <top>
         <HBox alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="19.0" prefWidth="700.0" styleClass="hatbox" BorderPane.alignment="CENTER">
             <children>
@@ -45,192 +40,181 @@
     </top>
     <center>
         <HBox>
-            <ImageView fitHeight="38.0" fitWidth="50.0" layoutX="14.0" layoutY="6.0" onMouseClicked="#goBack"
-                       pickOnBounds="true" preserveRatio="true" styleClass="iconBTN">
+            <ImageView fitHeight="38.0" fitWidth="50.0" layoutX="14.0" layoutY="6.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true" styleClass="iconBTN">
                 <image>
-                    <Image url="@icons/arrow_back.png"/>
+                    <Image url="@icons/arrow_back.png" />
                 </image>
             </ImageView>
-            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                      prefHeight="400.0"
-                      prefWidth="600.0"
-            >
+            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
                 <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="293.0"/>
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="0.0" prefWidth="0.0"/>
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="295.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="293.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="0.0" prefWidth="0.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="295.0" />
                 </columnConstraints>
                 <rowConstraints>
-                    <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="102.0" vgrow="SOMETIMES"/>
-                    <RowConstraints maxHeight="309.0" minHeight="10.0" prefHeight="298.0" vgrow="SOMETIMES"/>
+                    <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="102.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="309.0" minHeight="10.0" prefHeight="298.0" vgrow="SOMETIMES" />
                 </rowConstraints>
 
                 <children>
-                    <JFXTextField fx:id="channelId1" onKeyTyped="#channelId1KeyInput" prefHeight="22.0"
-                                  prefWidth="228.0"/>
-                    <Label text="Channel id:">
+                    <JFXTextField fx:id="channelId1" onKeyTyped="#channelId1KeyInput" prefHeight="22.0" prefWidth="228.0" styleClass="lightText" />
+                    <Label styleClass="lightText" text="Channel id:">
                         <GridPane.margin>
-                            <Insets bottom="30.0"/>
+                            <Insets bottom="30.0" />
                         </GridPane.margin>
                     </Label>
 
 
-                    <Separator orientation="VERTICAL" prefHeight="298.0" prefWidth="1.0" GridPane.columnIndex="1"
-                               GridPane.rowSpan="2"/>
+                    <Separator orientation="VERTICAL" prefHeight="298.0" prefWidth="1.0" GridPane.columnIndex="1" GridPane.rowSpan="2" />
 
-                    <JFXTextField fx:id="channelId2" onKeyTyped="#channelId2KeyInput" prefHeight="22.0"
-                                  prefWidth="228.0"
-                                  GridPane.columnIndex="2"/>
-                    <Label text="Channel 2 id:"
-                          GridPane.columnIndex="2">
+                    <JFXTextField fx:id="channelId2" onKeyTyped="#channelId2KeyInput" prefHeight="22.0" prefWidth="228.0" styleClass="lightText" GridPane.columnIndex="2" />
+                    <Label styleClass="lightText" text="Channel 2 id:" GridPane.columnIndex="2">
                         <GridPane.margin>
-                            <Insets bottom="30.0"/>
+                            <Insets bottom="30.0" />
                         </GridPane.margin>
                     </Label>
 
-                    <ImageView fx:id="channelImageView1" GridPane.halignment="RIGHT" GridPane.rowIndex="1"
-                               GridPane.valignment="TOP">
+                    <ImageView fx:id="channelImageView1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                         <GridPane.margin>
-                            <Insets right="15.0" top="15.0"/>
+                            <Insets right="15.0" top="15.0" />
                         </GridPane.margin>
                     </ImageView>
-                    <VBox spacing="5.0" GridPane.rowIndex="1">
+                    <VBox spacing="5.0" style="-fx-padding: 10;" GridPane.rowIndex="1">
                         <children>
-                            <Label fx:id="chaneNameText1">
+                            <Label fx:id="chaneNameText1" styleClass="lightText">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
-                            <Label text="Created:">
+                            <Label styleClass="lightText" text="Created:">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
-                            <Label fx:id="createdDateText1">
+                            <Label fx:id="createdDateText1" styleClass="lightText">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
-                            <Label text="Subs count:">
+                            <Label styleClass="lightText" text="Subs count:">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
-                            <Label fx:id="subsCountText1">
+                            <Label fx:id="subsCountText1" styleClass="lightText">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
-                            <Label text="Videos count:">
+                            <Label styleClass="lightText" text="Videos count:">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
-                            <Label fx:id="videosCountText1">
+                            <Label fx:id="videosCountText1" styleClass="lightText">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
-                            <Label text="Watches count:">
+                            <Label styleClass="lightText" text="Watches count:">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
-                            <Label fx:id="watchesCountText1">
+                            <Label fx:id="watchesCountText1" styleClass="lightText">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
-                            <Label fx:id="comText1" text="Comments count:">
+                            <Label fx:id="comText1" styleClass="lightText" text="Comments count:">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
-                            <Label fx:id="commentsCountText1">
+                            <Label fx:id="commentsCountText1" styleClass="lightText">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
 
                         </children>
                         <opaqueInsets>
-                            <Insets/>
+                            <Insets />
                         </opaqueInsets>
                         <GridPane.margin>
-                            <Insets/>
+                            <Insets />
                         </GridPane.margin>
                     </VBox>
 
-                    <ImageView fx:id="channelImageView2" GridPane.halignment="RIGHT" GridPane.rowIndex="1"
-                               GridPane.valignment="TOP" GridPane.columnIndex="2">
+                    <ImageView fx:id="channelImageView2" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                         <GridPane.margin>
-                            <Insets right="15.0" top="15.0"/>
+                            <Insets right="15.0" top="15.0" />
                         </GridPane.margin>
                     </ImageView>
-                    <VBox spacing="5.0" GridPane.rowIndex="1" GridPane.columnIndex="2">
+                    <VBox spacing="5.0" style="-fx-padding: 10;" GridPane.columnIndex="2" GridPane.rowIndex="1">
                         <children>
-                            <Label fx:id="chaneNameText2">
+                            <Label fx:id="chaneNameText2" styleClass="lightText">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
-                            <Label text="Created:">
+                            <Label styleClass="lightText" text="Created:">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
-                            <Label fx:id="createdDateText2">
+                            <Label fx:id="createdDateText2" styleClass="lightText">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
-                            <Label text="Subs count:">
+                            <Label styleClass="lightText" text="Subs count:">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
-                            <Label fx:id="subsCountText2">
+                            <Label fx:id="subsCountText2" styleClass="lightText">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
-                            <Label text="Videos count:">
+                            <Label styleClass="lightText" text="Videos count:">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
-                            <Label fx:id="videosCountText2">
+                            <Label fx:id="videosCountText2" styleClass="lightText">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
-                            <Label text="Watches count:">
+                            <Label styleClass="lightText" text="Watches count:">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
-                            <Label fx:id="watchesCountText2">
+                            <Label fx:id="watchesCountText2" styleClass="lightText">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
-                            <Label fx:id="comText2" text="Comments count:">
+                            <Label fx:id="comText2" styleClass="lightText" text="Comments count:">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
-                            <Label fx:id="commentsCountText2">
+                            <Label fx:id="commentsCountText2" styleClass="lightText">
                                 <font>
-                                    <Font size="18.0"/>
+                                    <Font size="18.0" />
                                 </font>
                             </Label>
 
                         </children>
                         <opaqueInsets>
-                            <Insets/>
+                            <Insets />
                         </opaqueInsets>
                         <GridPane.margin>
-                            <Insets/>
+                            <Insets />
                         </GridPane.margin>
                     </VBox>
 

@@ -325,7 +325,8 @@ public class FXMLYTChannelFindController {
 
     @FXML
     void chooseBtnClick(ActionEvent event) {
-      chosenChannelsId.add(channelList.getSelectionModel().getSelectedItem().chanelId);
+        if(!chosenChannelsId.contains(channelList.getSelectionModel().getSelectedItem().chanelId))
+          chosenChannelsId.add(channelList.getSelectionModel().getSelectedItem().chanelId);
     }
 
 
