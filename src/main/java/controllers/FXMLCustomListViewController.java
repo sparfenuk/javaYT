@@ -1,12 +1,16 @@
 package controllers;
 
 import com.jfoenix.controls.JFXListView;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
@@ -21,6 +25,8 @@ public class FXMLCustomListViewController {
 
     @FXML
     private JFXListView<Cell> listView;
+
+
 
     private class Cell {
         private String imagePath;
@@ -90,6 +96,7 @@ public class FXMLCustomListViewController {
         Label subsCount;
         Label videoCount;
         Label viewCount;
+        Label commentsCount;
 
 
         public LCell() {
@@ -100,8 +107,9 @@ public class FXMLCustomListViewController {
             subsCount = new Label();
             videoCount = new Label();
             viewCount = new Label();
+            commentsCount = new Label();
 
-            VBox vBox = new VBox(imageView, nickName, creationDate, subsCount, videoCount, viewCount);
+            VBox vBox = new VBox(imageView, nickName, creationDate, subsCount, videoCount, viewCount,commentsCount);
             hBox = new HBox(imageView, vBox);
 
             hBox.getStylesheets().add("/styles/cellStyle.css");
@@ -115,10 +123,13 @@ public class FXMLCustomListViewController {
             if (item != null && !empty) {
                 imageView.setImage(new Image(item.getImagePath(), true));
                 nickName.setText("Name: " + item.getChannelName());
-                creationDate.setText("Created: " + item.getChannelName());
+                creationDate.setText("Created: " + item.getCreationDate());
                 subsCount.setText("Subs: " + item.getSubsCount());
                 videoCount.setText("Videos: " + item.getSubsCount());
                 viewCount.setText("Views: " + item.getViewsCount());
+                if(item.getCommentsCount() != null)
+                    commentsCount.setText("Comments: " + item.getCommentsCount());
+
                 setGraphic(hBox);
             } else setGraphic(null);
         }
@@ -147,13 +158,30 @@ public class FXMLCustomListViewController {
         channels.sort(Comparator.comparing(Channel::getCommentCount).reversed());
 
         for (Channel c : channels)
-            addItem(c);
+        {
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd");
+                Date d = sdf.parse(c.getInfo().getPublishedAt());
+
+                listView.getItems().add(new Cell(c.getInfo().getThumbnails().getDefault().getUrl(),
+                        c.getInfo().getTitle(),
+                        d.toString(),
+                        Long.parseLong(c.getStatistics().getSubscriberCount()),
+                        Integer.parseInt(c.getStatistics().getVideoCount()),
+                        c.getViewCount(),
+                        c.getCommentCount())
+                );
+            } catch (Exception e) {
+                System.out.println("Invalid creation date");
+            }
+        }
     }
 
     public void setItems(List<Channel> channels, String sortBy) {
         listView.getItems().clear();
         switch (sortBy) {
-            case "name":
+            case "Name":
                 channels.sort(new Comparator<Channel>() {
                     @Override
                     public int compare(Channel o1, Channel o2) {
@@ -161,7 +189,7 @@ public class FXMLCustomListViewController {
                     }
                 });
                 break;
-            case "date":
+            case "Date":
                 channels.sort(new Comparator<Channel>() {
                     @Override
                     public int compare(Channel o1, Channel o2) {
@@ -169,26 +197,26 @@ public class FXMLCustomListViewController {
                     }
                 });
                 break;
-            case "subs":
-                channels.sort(new Comparator<Channel>() {
+            case "Subs":
+                channels.sort(new Comparator<Channel>() {//reverse
                     @Override
-                    public int compare(Channel o1, Channel o2) {
+                    public int compare(Channel o2, Channel o1) {
                         return o1.getStatistics().getSubscriberCount().compareTo(o2.getStatistics().getSubscriberCount());
                     }
                 });
                 break;
-            case "video":
-                channels.sort(new Comparator<Channel>() {
+            case "Video":
+                channels.sort(new Comparator<Channel>() {//reverse
                     @Override
-                    public int compare(Channel o1, Channel o2) {
+                    public int compare(Channel o2, Channel o1) {
                         return o1.getStatistics().getVideoCount().compareTo(o2.getStatistics().getVideoCount());
                     }
                 });
                 break;
-            case "view":
+            case "View":
                 channels.sort(new Comparator<Channel>() {
                     @Override
-                    public int compare(Channel o1, Channel o2) {
+                    public int compare(Channel o2, Channel o1) {//reverse
                         return o1.getStatistics().getViewCount().compareTo(o2.getStatistics().getViewCount());
                     }
                 });
@@ -211,7 +239,17 @@ public class FXMLCustomListViewController {
                 return new LCell();
             }
         });
-        //listView.getItems().add(new Cell("https://yt3.ggpht.com/a/AGF-l78jKS1dQTlvI282DRahMFh62R3Gl2vFXZr6Vg=s88-mo-c-c0xffffffff-rj-k-no","P","22.12.2012",44654687l,10000,43242343242938192l));
+        listView.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode().equals(KeyCode.DELETE) && listView.getSelectionModel().getSelectedItem() != null) {
+                    listView.getItems().remove(listView.getSelectionModel().getSelectedIndex());
+                }
+            }
+        });
+
+        listView.getItems().add(new Cell("https://yt3.ggpht.com/a/AGF-l78jKS1dQTlvI282DRahMFh62R3Gl2vFXZr6Vg=s88-mo-c-c0xffffffff-rj-k-no","P","22.12.2012",44654687l,10000,43242343242938192l));
+        listView.getItems().add(new Cell("https://yt3.ggpht.com/a/AGF-l78jKS1dQTlvI282DRahMFh62R3Gl2vFXZr6Vg=s88-mo-c-c0xffffffff-rj-k-no","P","22.12.2012",44654687l,10000,43242343242938192l,321312L));
     }
 
 }
