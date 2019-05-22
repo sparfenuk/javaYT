@@ -40,7 +40,7 @@
 
                 <JFXButton fx:id="globalInfBtn" maxHeight="Infinity" maxWidth="Infinity" minHeight="50.0"
                            minWidth="100.0" onAction="#globalInfBtnClick" prefHeight="300.0" prefWidth="141.0"
-                           ripplerFill="BLACK" text="Отобразить глобальную информацию о канале" textAlignment="CENTER"
+                           ripplerFill="BLACK" text="Show global info about channel" textAlignment="CENTER"
                            textOverrun="CLIP" wrapText="true">
                     <cursor>
                         <Cursor fx:constant="HAND"/>
@@ -48,7 +48,7 @@
                 </JFXButton>
                 <JFXButton fx:id="compareChnlsBtn" maxHeight="Infinity" maxWidth="Infinity" minHeight="50.0"
                            minWidth="100.0" onAction="#compareChnlsBtnClick" prefHeight="300.0" prefWidth="200.0"
-                           text="Сравнить глобальную информацию о каналах" textAlignment="CENTER" wrapText="true"
+                           text="Compare global info about channels" textAlignment="CENTER" wrapText="true"
                            GridPane.columnIndex="1">
                     <cursor>
                         <Cursor fx:constant="HAND"/>
@@ -56,7 +56,7 @@
                 </JFXButton>
                 <JFXButton fx:id="sortChnlsBtn" maxHeight="Infinity" maxWidth="Infinity" minHeight="50.0"
                            minWidth="100.0" onAction="#sortChnlsBtnClick" prefHeight="300.0" prefWidth="200.0"
-                           text="Сортировать каналы по их данным" textAlignment="CENTER" wrapText="true"
+                           text="Sort channels by their's data" textAlignment="CENTER" wrapText="true"
                            GridPane.columnIndex="2">
                     <cursor>
                         <Cursor fx:constant="HAND"/>
@@ -64,14 +64,14 @@
                 </JFXButton>
                 <JFXButton fx:id="mediaResonanceBtn" maxHeight="Infinity" maxWidth="Infinity" minHeight="50.0"
                            minWidth="100.0" onAction="#mediaResonanceBtnClick" prefHeight="300.0" prefWidth="205.0"
-                           text="Медиа резонанс" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1">
+                           text="Media resonance" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1">
                     <cursor>
                         <Cursor fx:constant="HAND"/>
                     </cursor>
                 </JFXButton>
                 <JFXButton fx:id="compareMediaResonanceBtn" maxHeight="Infinity" maxWidth="Infinity" minHeight="50.0"
                            minWidth="100.0" onAction="#compareMediaResonanceBtnClick" prefHeight="300.0"
-                           prefWidth="200.0" text="Сравнить Медиа резонанс" textAlignment="CENTER" wrapText="true"
+                           prefWidth="200.0" text="Compare media resonance" textAlignment="CENTER" wrapText="true"
                            GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <cursor>
                         <Cursor fx:constant="HAND"/>
@@ -79,7 +79,7 @@
                 </JFXButton>
                 <JFXButton fx:id="sortMediaResonanceBtn" maxHeight="Infinity" maxWidth="Infinity" minHeight="50.0"
                            minWidth="100.0" onAction="#sortMediaResonanceBtnClick" prefHeight="300.0" prefWidth="200.0"
-                           text="Сортировать по Медиа резонансу" textAlignment="CENTER" wrapText="true"
+                           text="Sort by media resonance" textAlignment="CENTER" wrapText="true"
                            GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <cursor>
                         <Cursor fx:constant="HAND"/>
