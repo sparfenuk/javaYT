@@ -3,6 +3,10 @@ package controllers;
 import com.jfoenix.controls.JFXListView;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -11,17 +15,23 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import models.channel.Channel;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
 public class FXMLCustomListViewController {
+
+    private double x, y;
 
     @FXML
     private JFXListView<Cell> listView;
@@ -250,6 +260,51 @@ public class FXMLCustomListViewController {
 
         listView.getItems().add(new Cell("https://yt3.ggpht.com/a/AGF-l78jKS1dQTlvI282DRahMFh62R3Gl2vFXZr6Vg=s88-mo-c-c0xffffffff-rj-k-no","P","22.12.2012",44654687l,10000,43242343242938192l));
         listView.getItems().add(new Cell("https://yt3.ggpht.com/a/AGF-l78jKS1dQTlvI282DRahMFh62R3Gl2vFXZr6Vg=s88-mo-c-c0xffffffff-rj-k-no","P","22.12.2012",44654687l,10000,43242343242938192l,321312L));
+    }
+
+    @FXML
+    public void goBack(MouseEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXMLYTAnalitics.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+
+        stage.setTitle("Youtube channels");
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setScene(scene);
+
+        Stage current = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+
+        stage.show();
+        current.close();
+    }
+
+    @FXML
+    public void close(MouseEvent event)
+    {
+        Stage stage = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    public void minimize(MouseEvent event) {
+        Stage stage = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+
+    @FXML
+    public void pressed(MouseEvent event) {
+        x = event.getSceneX();
+        y = event.getSceneY();
+    }
+
+    @FXML
+    public void dragged(MouseEvent event) {
+        Stage stage = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+        stage.setX(event.getScreenX()-x);
+        stage.setY(event.getScreenY()-y);
     }
 
 }

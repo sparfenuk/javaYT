@@ -1,11 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXListView?>
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 
+<?import javafx.scene.layout.VBox?>
+<BorderPane onMouseDragged="#dragged" stylesheets="@styles/jfoenixCSS.css" onMousePressed="#pressed" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLCustomListViewController">
+    <top>
+        <HBox alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="19.0" prefWidth="700.0" styleClass="hatbox" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#minimize" pickOnBounds="true" preserveRatio="true" styleClass="iconBTN">
+                    <image>
+                        <Image url="@icons/minus.png" />
+                    </image>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </ImageView>
+                <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true" styleClass="iconBTN">
+                    <image>
+                        <Image url="@icons/close.png" />
+                    </image>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </ImageView>
+            </children>
+        </HBox>
+    </top>
+    <center>
+        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+            <children>
+                <ImageView fitHeight="38.0" fitWidth="50.0" layoutX="14.0" layoutY="6.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true" styleClass="iconBTN">
+                    <image>
+                        <Image url="@icons/arrow_back.png" />
+                    </image>
+                </ImageView>
+                <JFXListView fx:id="listView" layoutX="14.0" prefHeight="400.0" prefWidth="569.0" styleClass="listBox"/>
+            </children>
+        </VBox>
+    </center>
+    <bottom>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLCustomListViewController">
-   <children>
-      <JFXListView fx:id="listView" layoutX="14.0" prefHeight="400.0" prefWidth="569.0" />
-   </children>
-</AnchorPane>
+    </bottom>
+</BorderPane>

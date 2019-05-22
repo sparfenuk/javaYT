@@ -228,6 +228,8 @@ public class FXMLYTChannelFindController {
         thread.start();
     }
 
+
+
     @FXML
     void initialize() {
         animation = new RotationAnimation();
@@ -247,6 +249,7 @@ public class FXMLYTChannelFindController {
         switch (this.Type) {
 
             case 1:
+                chooseBtn.setVisible(false);
             channelList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Cell>() {
                 @Override
                 public void changed(ObservableValue<? extends Cell> observable, Cell oldValue, Cell newValue) {

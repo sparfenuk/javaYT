@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
+import java.io.IOException;
+
 
 public class FXMLMainController {
 
@@ -31,13 +33,13 @@ public class FXMLMainController {
     @FXML
     public void goToYTAnalitics(MouseEvent event) throws Exception
     {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXMLYTChannelFind.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXMLYTAnalitics.fxml"));
         Parent root = (Parent) fxmlLoader.load();
 
         Scene scene = new Scene(root);
         Stage stage = new Stage();
 
-        stage.setTitle("Youtube channels");
+        stage.setTitle("YouTube Analytic");
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
 
@@ -77,8 +79,21 @@ public class FXMLMainController {
         stage.setY(event.getScreenY()-y);
     }
 
-    public void goToSettings(MouseEvent event) {
+    public void goToSettings(MouseEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXMLSettings.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
 
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+
+        stage.setTitle("Settings");
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setScene(scene);
+
+        Stage current = (Stage)  ((Node)event.getSource()).getScene().getWindow();
+
+        stage.show();
+        current.close();
     }
 }
 

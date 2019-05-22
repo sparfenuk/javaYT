@@ -99,6 +99,22 @@ public class FXMLYTAController {
         grid.heightProperty().addListener(stageSizeListener);
     }
 
+    public void mainMenu(MouseEvent mouseEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Youtube Analytics");
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setResizable(false);
+            stage.setScene(new Scene(root1));
+            stage.show();
+            this.close(mouseEvent);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     public void close(MouseEvent event)
