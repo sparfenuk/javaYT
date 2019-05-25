@@ -336,6 +336,14 @@ public class FXMLShowBaseInfController {
                 watchesCountText1.setTextFill(Color.RED);
                 watchesCountText2.setTextFill(Color.GREEN);
             }
+
+            if (Long.parseLong(commentsCountText1.getText()) > Long.parseLong(commentsCountText2.getText())) {
+                commentsCountText1.setTextFill(Color.GREEN);
+                commentsCountText2.setTextFill(Color.RED);
+            } else {
+                commentsCountText1.setTextFill(Color.RED);
+                commentsCountText2.setTextFill(Color.GREEN);
+            }
         }
 
     }

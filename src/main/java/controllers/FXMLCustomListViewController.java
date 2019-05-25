@@ -39,6 +39,8 @@ public class FXMLCustomListViewController {
     @FXML
     private JFXListView<Cell> listView;
 
+    @FXML
+    private ComboBox<String> sortBy;
 
 
     private class Cell {
@@ -138,7 +140,7 @@ public class FXMLCustomListViewController {
                 nickName.setText("Name: " + item.getChannelName());
                 creationDate.setText("Created: " + item.getCreationDate());
                 subsCount.setText("Subs: " + item.getSubsCount());
-                videoCount.setText("Videos: " + item.getSubsCount());
+                videoCount.setText("Videos: " + item.getVideoCount());
                 viewCount.setText("Views: " + item.getViewsCount());
                 if(item.getCommentsCount() != null)
                     commentsCount.setText("Comments: " + item.getCommentsCount());
@@ -156,7 +158,7 @@ public class FXMLCustomListViewController {
 
             listView.getItems().add(new Cell(c.getInfo().getThumbnails().getDefault().getUrl(),
                     c.getInfo().getTitle(),
-                    d.toString(),
+                    output.format(d),
                     Long.parseLong(c.getStatistics().getSubscriberCount()),
                     Integer.parseInt(c.getStatistics().getVideoCount()),
                     Long.parseLong(c.getStatistics().getViewCount())));
@@ -167,6 +169,7 @@ public class FXMLCustomListViewController {
 
     public void setItems(List<Channel> channels){
         listView.getItems().clear();
+        this.sortBy.setValue("Comments");
 
         channels.sort(Comparator.comparing(Channel::getCommentCount).reversed());
 
@@ -179,7 +182,7 @@ public class FXMLCustomListViewController {
 
                 listView.getItems().add(new Cell(c.getInfo().getThumbnails().getDefault().getUrl(),
                         c.getInfo().getTitle(),
-                        d.toString(),
+                        output.format(d),
                         Long.parseLong(c.getStatistics().getSubscriberCount()),
                         Integer.parseInt(c.getStatistics().getVideoCount()),
                         c.getViewCount(),
@@ -193,6 +196,17 @@ public class FXMLCustomListViewController {
 
     public void setItems(List<Channel> channels, String sortBy) {
         listView.getItems().clear();
+        this.sortBy.setValue(sortBy);
+
+        sortOut(channels,sortBy);
+
+        for (Channel c : channels)
+            addItem(c);
+
+
+    }
+
+    public List<Channel> sortOut(List<Channel> channels, String sortBy){
         switch (sortBy) {
             case "Name":
                 channels.sort(new Comparator<Channel>() {
@@ -235,14 +249,8 @@ public class FXMLCustomListViewController {
                 });
                 break;
         }
-
-
-        for (Channel c : channels)
-            addItem(c);
-
-
+        return channels;
     }
-
 
     @FXML
     void initialize() {
@@ -260,6 +268,27 @@ public class FXMLCustomListViewController {
                 }
             }
         });
+
+        sortBy.getSelectionModel().selectedItemProperty().addListener( (options, oldValue, newValue) -> {
+            switch (newValue){
+                case "Name":
+                    listView.getItems().sort(Comparator.comparing(Cell::getChannelName));
+                    break;
+                case "Date":
+                    listView.getItems().sort(Comparator.comparing(Cell::getCreationDate));
+                    break;
+                case "Subs":
+                    listView.getItems().sort(Comparator.comparing(Cell::getSubsCount).reversed());
+                    break;
+                case "Video":
+                    listView.getItems().sort(Comparator.comparing(Cell::getVideoCount).reversed());
+                    break;
+                case "View":
+                    listView.getItems().sort(Comparator.comparing(Cell::getViewsCount).reversed());
+                    break;
+            }
+                }
+        );
 
 //        listView.getItems().add(new Cell("https://yt3.ggpht.com/a/AGF-l78jKS1dQTlvI282DRahMFh62R3Gl2vFXZr6Vg=s88-mo-c-c0xffffffff-rj-k-no","P","22.12.2012",44654687l,10000,43242343242938192l));
 //        listView.getItems().add(new Cell("https://yt3.ggpht.com/a/AGF-l78jKS1dQTlvI282DRahMFh62R3Gl2vFXZr6Vg=s88-mo-c-c0xffffffff-rj-k-no","P","22.12.2012",44654687l,10000,43242343242938192l,321312L));

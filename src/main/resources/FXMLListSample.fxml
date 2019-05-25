@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXListView?>
-<?import java.net.URL?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-
 <?import javafx.scene.layout.VBox?>
-<BorderPane onMouseDragged="#dragged" stylesheets="@styles/jfoenixCSS.css" onMousePressed="#pressed" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLCustomListViewController">
+
+<BorderPane onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles/jfoenixCSS.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLCustomListViewController">
     <top>
         <HBox alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="19.0" prefWidth="700.0" styleClass="hatbox" BorderPane.alignment="CENTER">
             <children>
@@ -34,14 +36,31 @@
         </HBox>
     </top>
     <center>
+
         <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
             <children>
-                <ImageView fitHeight="38.0" fitWidth="50.0" layoutX="14.0" layoutY="6.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true" styleClass="iconBTN">
-                    <image>
-                        <Image url="@icons/arrow_back.png" />
-                    </image>
-                </ImageView>
-                <JFXListView fx:id="listView" layoutX="14.0" prefHeight="400.0" prefWidth="569.0" styleClass="listBox"/>
+                <HBox>
+                    <ImageView fitHeight="38.0" fitWidth="50.0" layoutX="14.0" layoutY="6.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true" styleClass="iconBTN">
+                        <image>
+                            <Image url="@icons/arrow_back.png" />
+                        </image>
+                    </ImageView>
+                    <ComboBox fx:id="sortBy" >
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Name" />
+                                <String fx:value="Date" />
+                                <String fx:value="Subs" />
+                                <String fx:value="Video" />
+                                <String fx:value="View" />
+                            </FXCollections>
+                        </items>
+                  <HBox.margin>
+                     <Insets top="7.0" />
+                  </HBox.margin>
+                    </ComboBox>
+                </HBox>
+                <JFXListView fx:id="listView" layoutX="14.0" prefHeight="400.0" prefWidth="569.0" styleClass="listBox" />
             </children>
         </VBox>
     </center>

@@ -32,10 +32,12 @@ public class Program extends Application {
     public static void main(String[] args) throws Exception {
 
         //<init>
-        File cacheFolder = new File(Settings.CACHEPATH);
+        File cacheFolder = new File(Settings.deSerealize().getCachePath());
         cacheFolder.mkdirs();
        //</init>
-        System.out.println(Requests.search("PewDiePie","channel",1).get(0).getResult().getChannelTitle());
+        //System.out.println(Requests.search("PewDiePie","channel",1).get(0).getResult().getChannelTitle());
+
+        //System.out.println(Requests.getChannelsResonanse("UCd8LNXKST3VEgVeRnRcZJmg")[1]);
         Application.launch();
     }
 }

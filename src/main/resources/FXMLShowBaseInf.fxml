@@ -20,7 +20,7 @@
 <?import javafx.scene.image.Image?>
 <BorderPane fx:controller="controllers.FXMLShowBaseInfController" xmlns="http://javafx.com/javafx/8.0.172-ea"
             xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" stylesheets="@styles/jfoenixCSS.css"
-            prefWidth="600.0">
+            prefWidth="600.0" onMouseDragged="#dragged" onMousePressed="#pressed">
     <top>
         <HBox alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="19.0" prefWidth="700.0" styleClass="hatbox" BorderPane.alignment="CENTER">
             <children>
