@@ -143,38 +143,31 @@ public class FXMLYTChannelFindController {
         channelList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Cell>() {
             @Override
             public void changed(ObservableValue<? extends Cell> observable, Cell oldValue, Cell newValue) {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                            Channel channel = Requests.getChannel(observable.getValue().getChanelId());
-                            Statistics s = channel.getStatistics();
-                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-                            SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd");
-                            Date d = sdf.parse(channel.getInfo().getPublishedAt());
+                try {
 
-                            Platform.runLater(()-> {
-                                        date.setText(output.format(d));
-                                        name.setText(channel.getInfo().getTitle());
-                                        subs.setText("subscribers: " + s.getSubscriberCount());
-                                        views.setText("views: " + s.getViewCount());
-                                        channelImage.setImage(new Image(channel.getInfo().getThumbnails().getMedium().getUrl()));
-                                        videos.setText("videos: " + s.getVideoCount());
-                                    });
+                    Channel channel = Requests.getChannel(observable.getValue().getChanelId());
+                    name.setText(channel.getInfo().getTitle());
+                    Statistics s = channel.getStatistics();
+                    subs.setText("subscribers: " + s.getSubscriberCount());
+                    views.setText("views: " + s.getViewCount());
+                    channelImage.setImage(new Image(channel.getInfo().getThumbnails().getHigh().getUrl()));
+                    videos.setText("videos: " + s.getVideoCount());
 
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                    SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd");
+                    Date d = sdf.parse(channel.getInfo().getPublishedAt());
+                    date.setText(output.format(d));
 
-                            //????????????????????????????????????????????????????????????????????????????
-                            //if (Type == 1|| Type ==4)
-                            if(Type == 4 || Type == 6)
-                            {
-                                long [] comment = Requests.getChannelsResonanse( channel.getId());
-                               Platform.runLater(()->comments.setText("comments: "+String.valueOf(comment[0])));
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                    if (Type == 1|| Type ==4)
+                    {
+
+                        long [] comment = Requests.getChannelsResonanse( channel.getId());
+                        comments.setText("comments: "+String.valueOf(comment[0]));
                     }
-                }).start();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -409,10 +402,10 @@ public class FXMLYTChannelFindController {
                      ) {
 
                     channel = Requests.getChannel(s);
+                    long[] comments = Requests.getChannelsResonanse(s);
+                    channel.setViewCount(comments[1]);
 
                     if(res) {
-                        long[] comments = Requests.getChannelsResonanse(s);
-                        channel.setViewCount(comments[1]);
                         channel.setCommentCount(comments[0]);
                     }
 

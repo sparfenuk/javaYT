@@ -58,7 +58,7 @@
                   <Circle fx:id="circle1" fill="#2197ff00" radius="90.0" stroke="#c3c9cddb" strokeLineCap="ROUND" strokeType="INSIDE" strokeWidth="7.0" style="-fx-stroke-dash-array: 35;" />
                </children>
             </StackPane>
-            <JFXTextField fx:id="nickNameField" focusColor="#d5dae8" layoutX="5.0" layoutY="31.0" prefHeight="27.0" prefWidth="393.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="385.0" AnchorPane.topAnchor="31.0" />
+            <JFXTextField fx:id="nickNameField" focusColor="#d5dae8" layoutX="5.0" layoutY="31.0" prefHeight="27.0" prefWidth="393.0" styleClass="lightText" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="385.0" AnchorPane.topAnchor="31.0" />
             <JFXButton id="smallBTN" fx:id="findBtn" defaultButton="true" layoutX="317.0" layoutY="70.0" onAction="#findBtnClick" text="Find" AnchorPane.rightAnchor="427.0" AnchorPane.topAnchor="70.0" />
             <JFXButton id="smallBTN" fx:id="chooseBtn" layoutX="572.0" layoutY="446.0" onAction="#chooseBtnClick" prefHeight="27.0" prefWidth="69.0" text="Choose" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="142.0" />
             <JFXButton id="smallBTN" fx:id="cancelBtn" layoutX="374.0" layoutY="70.0" onAction="#cancelBtnClick" text="Cancel" AnchorPane.rightAnchor="360.0" AnchorPane.topAnchor="70.0" />
