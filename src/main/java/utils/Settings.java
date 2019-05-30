@@ -53,6 +53,10 @@ public class Settings implements Serializable {
         this.cachePath = "Cache/";
         this.isCacheSave = true;
         this.isLoadTimeShow = true;
+        if(!isFileExists())
+            try {
+                serealize(this);
+            }catch (Exception e){e.printStackTrace();}
     }
 
 
@@ -79,7 +83,7 @@ public class Settings implements Serializable {
         return settings;
 
     }
-    public static boolean ifFileExist ()
+    public static boolean isFileExists ()
     {
         File f = new File("Settings.set");
         if(f.exists() && !f.isDirectory()) {

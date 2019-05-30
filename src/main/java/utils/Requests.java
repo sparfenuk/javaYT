@@ -16,7 +16,7 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Requests {
-    
+
     public static Channel getChannel(String channelid) throws Exception {
         String json = "";
         File cacheFile = new File(getCachePath() + Objects.hash(channelid+"getChannel") + ".json");
@@ -36,7 +36,9 @@ public class Requests {
                     .queryString("id", channelid)
                     .asString();
             json = response.getBody();
-            Files.write(cacheFile.toPath(), json.getBytes());
+
+            if(isSaveChache())
+                Files.write(cacheFile.toPath(), json.getBytes());
         }
 
         return new Gson().fromJson(json, models.channel.Response.class).getItems().get(0);
@@ -64,7 +66,9 @@ public class Requests {
                     .queryString("q", query)
                     .asString();
             json = response.getBody();
-            Files.write(cacheFile.toPath(), json.getBytes());
+
+            if(isSaveChache())
+                Files.write(cacheFile.toPath(), json.getBytes());
         }
 
         return new Gson().fromJson(json, models.search.Response.class).getItems();
@@ -127,7 +131,8 @@ public class Requests {
                     .queryString("order", "date")
                     .asString();
             json = response.getBody();
-            Files.write(cacheFile.toPath(), json.getBytes());
+            if(isSaveChache())
+                Files.write(cacheFile.toPath(), json.getBytes());
         }
 
         return new Gson().fromJson(json, models.search.Response.class);
@@ -153,7 +158,9 @@ public class Requests {
                     .queryString("id", videos)
                     .asString();
             json = response.getBody();
-            Files.write(cacheFile.toPath(), json.getBytes());
+
+            if(isSaveChache())
+                Files.write(cacheFile.toPath(), json.getBytes());
         }
         return new Gson().fromJson(json, models.video.Response.class);
     }
@@ -164,7 +171,9 @@ public class Requests {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, encoding);
     }
-    
+    private static boolean isSaveChache(){
+        return Settings.deSerealize().getCacheSave();
+    }
     private static String getCachePath(){
       return Settings.deSerealize().getCachePath();
     }

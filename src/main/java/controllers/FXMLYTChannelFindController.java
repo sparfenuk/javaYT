@@ -143,31 +143,38 @@ public class FXMLYTChannelFindController {
         channelList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Cell>() {
             @Override
             public void changed(ObservableValue<? extends Cell> observable, Cell oldValue, Cell newValue) {
-                try {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Channel channel = Requests.getChannel(observable.getValue().getChanelId());
+                            Statistics s = channel.getStatistics();
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                            SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd");
+                            Date d = sdf.parse(channel.getInfo().getPublishedAt());
 
-                    Channel channel = Requests.getChannel(observable.getValue().getChanelId());
-                    name.setText(channel.getInfo().getTitle());
-                    Statistics s = channel.getStatistics();
-                    subs.setText("subscribers: " + s.getSubscriberCount());
-                    views.setText("views: " + s.getViewCount());
-                    channelImage.setImage(new Image(channel.getInfo().getThumbnails().getHigh().getUrl()));
-                    videos.setText("videos: " + s.getVideoCount());
+                            Platform.runLater(()-> {
+                                date.setText(output.format(d));
+                                name.setText(channel.getInfo().getTitle());
+                                subs.setText("subscribers: " + s.getSubscriberCount());
+                                views.setText("views: " + s.getViewCount());
+                                channelImage.setImage(new Image(channel.getInfo().getThumbnails().getMedium().getUrl()));
+                                videos.setText("videos: " + s.getVideoCount());
+                            });
 
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-                    SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd");
-                    Date d = sdf.parse(channel.getInfo().getPublishedAt());
-                    date.setText(output.format(d));
 
-                    if (Type == 1|| Type ==4)
-                    {
-
-                        long [] comment = Requests.getChannelsResonanse( channel.getId());
-                        comments.setText("comments: "+String.valueOf(comment[0]));
+                            //????????????????????????????????????????????????????????????????????????????
+                            //if (Type == 1|| Type ==4)
+                            if(Type == 4 || Type == 6)
+                            {
+                                long [] comment = Requests.getChannelsResonanse( channel.getId());
+                                Platform.runLater(()->comments.setText("comments: "+String.valueOf(comment[0])));
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                }).start();
             }
         });
 
@@ -184,7 +191,7 @@ public class FXMLYTChannelFindController {
         }
         else if (Type == 2 || Type == 3 || Type == 5 || Type == 6)
         {
-               channelList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+            channelList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         }
 
 
@@ -334,16 +341,16 @@ public class FXMLYTChannelFindController {
     {
 
 
-     try {
-         if(chosenChannelsId.size()>=2) {
+        try {
+            if(chosenChannelsId.size()>=2) {
 
-             FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLShowBaseInf.fxml"));
-             Parent root1 = (Parent) loader.load();
-             FXMLShowBaseInfController controller = loader.<FXMLShowBaseInfController>getController();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLShowBaseInf.fxml"));
+                Parent root1 = (Parent) loader.load();
+                FXMLShowBaseInfController controller = loader.<FXMLShowBaseInfController>getController();
 
-             controller.setTextId1(chosenChannelsId.get(0));
-             controller.setTextId2(chosenChannelsId.get(1));
-             controller.setComments(res);
+                controller.setTextId1(chosenChannelsId.get(0));
+                controller.setTextId2(chosenChannelsId.get(1));
+                controller.setComments(res);
 //             controller.channel1 = Requests.getChannel(chosenChannelsId.get(0));
 //             controller.channel2 = Requests.getChannel(chosenChannelsId.get(1));
 //
@@ -362,25 +369,25 @@ public class FXMLYTChannelFindController {
 //             }
 
 
-             Stage stage = new Stage();
-             stage.initModality(Modality.APPLICATION_MODAL);
-             stage.initStyle(StageStyle.UNDECORATED);
-             stage.setTitle("Find Channel");
-             stage.setScene(new Scene(root1));
-             stage.show();
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setTitle("Find Channel");
+                stage.setScene(new Scene(root1));
+                stage.show();
 
-             Stage stage1 = (Stage) borderPane.getScene().getWindow();
-             stage1.close();
-         }
-         else
-         {
-             JOptionPane.showMessageDialog(null,"Chose more then 1");
-         }
-     }
-    catch (Exception e)
-    {
-       e.printStackTrace();
-    }
+                Stage stage1 = (Stage) borderPane.getScene().getWindow();
+                stage1.close();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null,"Chose more then 1");
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
 
     }
 
@@ -399,17 +406,17 @@ public class FXMLYTChannelFindController {
                 Channel channel = null;
 
                 for ( String s :chosenChannelsId
-                     ) {
+                ) {
 
                     channel = Requests.getChannel(s);
-                    long[] comments = Requests.getChannelsResonanse(s);
-                    channel.setViewCount(comments[1]);
 
                     if(res) {
+                        long[] comments = Requests.getChannelsResonanse(s);
+                        channel.setViewCount(comments[1]);
                         channel.setCommentCount(comments[0]);
                     }
 
-                   channels.add(channel);
+                    channels.add(channel);
                 }
                 if(res) {
                     controller.setItems(channels);
@@ -447,7 +454,7 @@ public class FXMLYTChannelFindController {
     @FXML
     void findBtnClick(ActionEvent event) {
 
-       animation.play();
+        animation.play();
         channelList.getItems().clear();
 
         Runnable runnable = new Runnable() {
@@ -455,7 +462,7 @@ public class FXMLYTChannelFindController {
             public void run() {
                 try {
                     List<Item> channels = utils.Requests.search(nickNameField.getText(), "channel", 14);
-                   animation.stop();
+                    animation.stop();
                     for (Item i : channels)
                         Platform.runLater(() ->
                                 channelList.getItems().add(
