@@ -1,6 +1,5 @@
 package controllers;
-import javafx.scene.paint.Paint;
-import javafx.stage.DirectoryChooser;
+
 import utils.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
@@ -16,18 +15,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.File;
-import java.io.IOException;
-import java.util.ResourceBundle;
-
-import static java.awt.Color.WHITE;
 
 public class FXMLSettingsController {
 
@@ -97,7 +90,7 @@ public class FXMLSettingsController {
     @FXML
     void initialize()
     {
-        if (utils.Settings.ifFileExist())
+        if (utils.Settings.isFileExists())
         {
            settings = utils.Settings.deSerealize();
            // System.out.println(settings);

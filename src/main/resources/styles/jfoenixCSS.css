@@ -90,3 +90,10 @@
 {
   -fx-font-size: 22;
 }
+.popup {
+    -fx-background-color: gray;
+    -fx-padding: 10;
+    -fx-border-color: #282828;
+    -fx-border-width: 5;
+    -fx-font-size: 16;
+}
