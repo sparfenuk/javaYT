@@ -5,13 +5,9 @@ import java.io.*;
 
 public class Settings implements Serializable {
     public static String API_DATA_KEY = "AIzaSyB1-COiU17RrgcEpjxWWohJjKiWI5Oq0aA";
-    public static String CACHEPATH = "Cache/";
     //This is seconds parameter
     //by default it set to 7 days
     public static Long CACHELIFETIME = 86400l * 7;
-//    public long startTime;
-//    public long endTime;
-
     public  String cachePath ;
     private  Boolean isCacheSave;
     private  Boolean isLoadTimeShow;
@@ -53,22 +49,35 @@ public class Settings implements Serializable {
         this.cachePath = "Cache/";
         this.isCacheSave = true;
         this.isLoadTimeShow = true;
-        if(!isFileExists())
+
+        File file = new File("Settings.set");
+        if(file.exists()) {
+            Settings deSerialized = deSerialize();
+            this.cachePath = deSerialized.cachePath;
+            this.isCacheSave = deSerialized.isCacheSave;
+            this.isLoadTimeShow = deSerialized.isLoadTimeShow;
+        }
+        else
+        {
             try {
-                serealize(this);
-            }catch (Exception e){e.printStackTrace();}
+                file.createNewFile();
+                serialize(this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
     }
-
-
-
-    public static void serealize (Settings settings) throws Exception{
+    public static void serialize (Settings settings) throws Exception{
         FileOutputStream outputStream = new FileOutputStream("Settings.set");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
         objectOutputStream.writeObject(settings);
 
         objectOutputStream.close();
     }
-    public static Settings deSerealize () {
+    public static Settings deSerialize () {
         FileInputStream fileInputStream = null;
         Settings settings;
         try {
@@ -86,11 +95,7 @@ public class Settings implements Serializable {
     public static boolean isFileExists ()
     {
         File f = new File("Settings.set");
-        if(f.exists() && !f.isDirectory()) {
-           return true;
-        }
-        else { return false;}
-
+        return (f.exists() && !f.isDirectory());
     }
 
    /* public  long getDuration() {

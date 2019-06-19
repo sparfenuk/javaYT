@@ -172,10 +172,10 @@ public class Requests {
         return new String(encoded, encoding);
     }
     private static boolean isSaveChache(){
-        return Settings.deSerealize().getCacheSave();
+        return Settings.deSerialize().getCacheSave();
     }
     private static String getCachePath(){
-      return Settings.deSerealize().getCachePath();
+      return Settings.deSerialize().getCachePath();
     }
     
 }

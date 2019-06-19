@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import utils.Requests;
@@ -15,12 +16,9 @@ public class Program extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
-//        stage.setMinHeight(150.0);
-//        stage.setMinWidth(300.0);
 
         Scene scene = new Scene(root);
-
-        //stage.setOpacity(0);
+        scene.setFill(Color.TRANSPARENT);
 
         stage.setTitle("Youtube Analytics");
         stage.initStyle(StageStyle.TRANSPARENT);
@@ -32,12 +30,9 @@ public class Program extends Application {
     public static void main(String[] args) throws Exception {
 
         //<init>
-        File cacheFolder = new File(Settings.deSerealize().getCachePath());
+        File cacheFolder = new File(Settings.deSerialize().getCachePath());
         cacheFolder.mkdirs();
-       //</init>
-        //System.out.println(Requests.search("PewDiePie","channel",1).get(0).getResult().getChannelTitle());
-
-        //System.out.println(Requests.getChannelsResonanse("UCd8LNXKST3VEgVeRnRcZJmg")[1]);
+        //</init>
         Application.launch();
     }
 }

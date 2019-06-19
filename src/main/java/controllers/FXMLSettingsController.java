@@ -92,7 +92,7 @@ public class FXMLSettingsController {
     {
         if (utils.Settings.isFileExists())
         {
-           settings = utils.Settings.deSerealize();
+           settings = utils.Settings.deSerialize();
            // System.out.println(settings);
         }
         else
@@ -229,7 +229,7 @@ public class FXMLSettingsController {
             settings.setLoadTimeShow(LoadTImeTrue.isSelected());
 
         try {
-            utils.Settings.serealize(settings);
+            utils.Settings.serialize(settings);
            // System.out.println(settings);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Can not save");
