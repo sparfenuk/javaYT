@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Circle?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="535.0" prefWidth="803.0" stylesheets="@styles/jfoenixCSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLYTChannelFindController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="535.0" prefWidth="803.0" stylesheets="@styles/jfoenixCSS.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLYTChannelFindController">
    <top>
       <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="31.0" prefWidth="570.0" styleClass="hatbox" BorderPane.alignment="CENTER">
          <children>
@@ -124,6 +124,7 @@
                   <Image url="@icons/arrow_back.png" />
                </image>
             </ImageView>
+            <Label fx:id="timerLabel" layoutX="361.0" layoutY="14.0" prefHeight="17.0" prefWidth="55.0" text="s" textFill="#b9a5a5" />
          </children>
       </AnchorPane>
    </center>

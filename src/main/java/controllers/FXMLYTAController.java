@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -108,6 +109,7 @@ public class FXMLYTAController {
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.setResizable(false);
             stage.setScene(new Scene(root1));
+            stage.getScene().setFill(Color.TRANSPARENT);
             stage.show();
             this.close(mouseEvent);
         }
@@ -161,9 +163,14 @@ public class FXMLYTAController {
             Parent root1 = (Parent) loader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
+            stage.initStyle(StageStyle.TRANSPARENT);
             stage.setTitle("Find Channel");
+
             stage.setScene(new Scene(root1));
+
+            stage.getScene().setFill(Color.TRANSPARENT);
+
+
             stage.show();
 
            // controllerEditBook.setType(type);

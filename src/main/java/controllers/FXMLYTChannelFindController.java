@@ -34,6 +34,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.*;
@@ -63,7 +64,8 @@ public class FXMLYTChannelFindController {
 
     @FXML
     private Label name;
-
+    @FXML
+    private Label timerLabel;
     @FXML
     private Label subs;
     @FXML
@@ -205,7 +207,7 @@ public class FXMLYTChannelFindController {
 
         Scene scene = new Scene(root);
         Stage stage = new Stage();
-
+        scene.setFill(Color.TRANSPARENT);
         stage.setTitle("Youtube channels");
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
@@ -374,9 +376,10 @@ public class FXMLYTChannelFindController {
 
                 Stage stage = new Stage();
                 stage.initModality(Modality.APPLICATION_MODAL);
-                stage.initStyle(StageStyle.UNDECORATED);
+                stage.initStyle(StageStyle.TRANSPARENT);
                 stage.setTitle("Find Channel");
                 stage.setScene(new Scene(root1));
+                stage.getScene().setFill(Color.TRANSPARENT);
                 stage.show();
 
                 Stage stage1 = (Stage) borderPane.getScene().getWindow();
@@ -432,9 +435,12 @@ public class FXMLYTChannelFindController {
 
                 Stage stage = new Stage();
                 stage.initModality(Modality.APPLICATION_MODAL);
-                stage.initStyle(StageStyle.UNDECORATED);
+                stage.initStyle(StageStyle.TRANSPARENT);
                 stage.setTitle("Find Channel");
                 stage.setScene(new Scene(root1));
+
+                stage.getScene().setFill(Color.TRANSPARENT);
+
                 stage.show();
 
                 Stage stage1 = (Stage) borderPane.getScene().getWindow();

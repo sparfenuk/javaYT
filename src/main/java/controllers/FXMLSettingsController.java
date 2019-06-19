@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.scene.paint.Color;
 import utils.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
@@ -123,6 +124,7 @@ public class FXMLSettingsController {
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.setResizable(false);
             stage.setScene(new Scene(root1));
+            stage.getScene().setFill(Color.TRANSPARENT);
             stage.show();
             this.close(mouseEvent);
         }

@@ -230,7 +230,7 @@ public class FXMLShowBaseInfController {
 
         Scene scene = new Scene(root);
         Stage stage = new Stage();
-
+        scene.setFill(Color.TRANSPARENT);
         stage.setTitle("Youtube channels");
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
@@ -337,7 +337,7 @@ public class FXMLShowBaseInfController {
                 watchesCountText2.setTextFill(Color.GREEN);
             }
 
-            if (Long.parseLong(commentsCountText1.getText()) > Long.parseLong(commentsCountText2.getText())) {
+            if (!commentsCountText1.getText().equals("") && Long.parseLong(commentsCountText1.getText()) > Long.parseLong(commentsCountText2.getText())) {
                 commentsCountText1.setTextFill(Color.GREEN);
                 commentsCountText2.setTextFill(Color.RED);
             } else {

@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -39,7 +40,7 @@ public class FXMLMainController {
         stage.setTitle("YouTube Analytic");
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
-
+        scene.setFill(Color.TRANSPARENT);
         Stage current = (Stage)  ((Node)event.getSource()).getScene().getWindow();
 
         stage.show();
@@ -82,7 +83,7 @@ public class FXMLMainController {
 
         Scene scene = new Scene(root);
         Stage stage = new Stage();
-
+        scene.setFill(Color.TRANSPARENT);
         stage.setTitle("Settings");
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);

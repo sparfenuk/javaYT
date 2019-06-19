@@ -29,10 +29,10 @@ public class Program extends Application {
 
     public static void main(String[] args) throws Exception {
 
-        //<init>
+
         File cacheFolder = new File(Settings.deSerialize().getCachePath());
         cacheFolder.mkdirs();
-        //</init>
+
         Application.launch();
     }
 }

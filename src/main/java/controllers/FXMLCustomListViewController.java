@@ -18,6 +18,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
@@ -301,7 +302,7 @@ public class FXMLCustomListViewController {
 
         Scene scene = new Scene(root);
         Stage stage = new Stage();
-
+        scene.setFill(Color.TRANSPARENT);
         stage.setTitle("Youtube channels");
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
