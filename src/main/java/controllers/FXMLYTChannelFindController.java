@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.animation.AnimationTimer;
 import javafx.animation.RotateTransition;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -45,6 +46,7 @@ import models.channel.Channel;
 import models.channel.Statistics;
 import models.search.Item;
 import utils.Requests;
+import utils.Settings;
 
 import javax.swing.*;
 
@@ -125,8 +127,10 @@ public class FXMLYTChannelFindController {
     @FXML
     void initialize() {
 
+        if(!Settings.deSerialize().getLoadTimeShow()){
+            timerLabel.setVisible(false);
+        }
 
-        System.out.println(Type);
 
 
         animation = new RotationAnimation();
@@ -164,9 +168,6 @@ public class FXMLYTChannelFindController {
                                 videos.setText("videos: " + s.getVideoCount());
                             });
 
-
-                            //????????????????????????????????????????????????????????????????????????????
-                            //if (Type == 1|| Type ==4)
                             if(Type == 4 || Type == 6)
                             {
                                 long [] comment = Requests.getChannelsResonanse( channel.getId());
@@ -253,12 +254,6 @@ public class FXMLYTChannelFindController {
                 goToListWindow(true);
                 break;
         }
-
-
-//        if (channelList.getSelectionModel().getSelectedIndex() >= 0) {
-//            chosenChanelId = channelList.getItems().get(channelList.getSelectionModel().getSelectedIndex()).chanelId;
-//            cancelBtnClick(event);
-//        }
 
     }
 
@@ -356,22 +351,6 @@ public class FXMLYTChannelFindController {
                 controller.setTextId1(chosenChannelsId.get(0));
                 controller.setTextId2(chosenChannelsId.get(1));
                 controller.setComments(res);
-//             controller.channel1 = Requests.getChannel(chosenChannelsId.get(0));
-//             controller.channel2 = Requests.getChannel(chosenChannelsId.get(1));
-//
-//             long[] comments = Requests.getChannelsResonanse(chosenChannelsId.get(0));
-//
-//             controller.channel1.setViewCount(comments[1]);
-//             if(res) {
-//                 controller.channel1.setCommentCount(comments[0]);
-//             }
-//
-//             comments = Requests.getChannelsResonanse(chosenChannelsId.get(1));
-//
-//             controller.channel2.setViewCount(comments[1]);
-//             if(res) {
-//                 controller.channel2.setCommentCount(comments[0]);
-//             }
 
 
                 Stage stage = new Stage();
@@ -463,7 +442,17 @@ public class FXMLYTChannelFindController {
     @FXML
     void findBtnClick(ActionEvent event) {
 
+
         animation.play();
+        long startTime = System.currentTimeMillis();
+        AnimationTimer animationTimer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                long elapsedMillis = System.currentTimeMillis() - startTime ;
+                timerLabel.setText(Long.toString(elapsedMillis / 100)+" ms");
+            }
+        };
+        animationTimer.start();
         channelList.getItems().clear();
 
         Runnable runnable = new Runnable() {
@@ -472,6 +461,7 @@ public class FXMLYTChannelFindController {
                 try {
                     List<Item> channels = utils.Requests.search(nickNameField.getText(), "channel", 14);
                     animation.stop();
+                    animationTimer.stop();
                     for (Item i : channels)
                         Platform.runLater(() ->
                                 channelList.getItems().add(
@@ -564,23 +554,5 @@ public class FXMLYTChannelFindController {
         });
         popup.show(stage);
     }
-//    private void startRotationAndShow()
-//    {
-//        rotation1.play();
-//        rotation2.play();
-//        rotation3.play();
-//        circle1.setVisible(true);
-//        circle2.setVisible(true);
-//        circle3.setVisible(true);
-//    }
-//    private void stopRotationAndHide()
-//    {
-//        rotation1.stop();
-//        rotation2.stop();
-//        rotation3.stop();
-//        circle1.setVisible(false);
-//        circle2.setVisible(false);
-//        circle3.setVisible(false);
-//
-//    }
+
 }

@@ -157,8 +157,7 @@ public class FXMLYTAController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLYTChannelFind.fxml"));
 
-           // FXMLYTChannelFindController controllerEditBook = loader.<FXMLYTChannelFindController>getController();
-           FXMLYTChannelFindController.setType(type);
+            FXMLYTChannelFindController.setType(type);
 
             Parent root1 = (Parent) loader.load();
             Stage stage = new Stage();
@@ -172,8 +171,6 @@ public class FXMLYTAController {
 
 
             stage.show();
-
-           // controllerEditBook.setType(type);
 
             Stage stage1 = (Stage)  ((Node)event.getSource()).getScene().getWindow();
             stage1.close();

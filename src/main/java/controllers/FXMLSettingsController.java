@@ -197,16 +197,6 @@ public class FXMLSettingsController {
     }
 
     public void cancelSettingsBtn(MouseEvent event) {
-//        CacheFalse.setSelected(false);
-//        CacheTrue.setSelected(false);
-//        CacheFalse.setDisable(false);
-//        CacheTrue.setDisable(false);
-//
-//        LoadTImeFalse.setSelected(false);
-//        LoadTImeTrue.setSelected(false);
-//        LoadTImeFalse.setDisable(false);
-//        LoadTImeTrue.setDisable(false);
-
         mainMenu(event);
     }
 

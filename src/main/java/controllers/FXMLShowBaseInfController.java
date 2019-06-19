@@ -204,20 +204,6 @@ public class FXMLShowBaseInfController {
         }
     }
 
-//    @FXML
-//    void findBtn1OnAction(ActionEvent event) {
-//        String channelId = getChannelId();
-//        channelId1.setText(channelId);
-//        channelId1KeyInput(null);
-//    }
-//
-//    @FXML
-//    void findBtn2OnAction(ActionEvent event) {
-//        String chanelId = getChannelId();
-//        channelId2.setText(chanelId);
-//        channelId2KeyInput(null);
-//    }
-
     @FXML
     void initialize() {
 
@@ -276,25 +262,6 @@ public class FXMLShowBaseInfController {
             stage.setFullScreen(false);
 
     }
-
-//    private String getChannelId() {
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLYTChannelFind.fxml"));
-//            Parent root1 = (Parent) loader.load();
-//            Stage stage = new Stage();
-//            stage.initModality(Modality.APPLICATION_MODAL);
-//            stage.initStyle(StageStyle.UNDECORATED);
-//            stage.setTitle("Find Channel");
-//            stage.setScene(new Scene(root1));
-//            FXMLYTChannelFindController controllerEditBook = loader.<FXMLYTChannelFindController>getController();
-//            stage.showAndWait();
-//
-//            return controllerEditBook.getChosenChanelId();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return "not found";
-//        }
-//    }
 
     private void check() {
         if (chaneNameText1.getText().length() > 0 && chaneNameText2.getText().length() > 0) {

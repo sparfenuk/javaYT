@@ -98,16 +98,5 @@ public class Settings implements Serializable {
         return (f.exists() && !f.isDirectory());
     }
 
-   /* public  long getDuration() {
-        return endTime - startTime;
-    }
-
-    public void start() {
-        startTime = System.currentTimeMillis();
-    }
-    public void stop() {
-        endTime = System.currentTimeMillis();
-    }*/
-
 
 }
